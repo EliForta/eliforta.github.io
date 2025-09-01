@@ -1,6 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import dispenserImage from "@/assets/clipboard-hero.gif";
-
+import beamImage from "@/assets/beam-hero.jpg";
 
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projects = [
@@ -14,12 +14,12 @@ const projects = [
     category: ""
   },
   {
-    title: "Sustainable Energy Storage",
-    description: "Developed a mechanical energy storage system using flywheel technology for renewable energy applications.",
-    image: dispenserImage,
-    tags: ["Mechanical Design", "Energy Systems", "SolidWorks", "FEA Analysis"],
-    slug: "energy-storage-flywheel",
-    year: "2023",
+    title: "Composite Paper Beam",
+    description: "Constructed a beam that supported a 2000lb+ load using only Elmers glue and standard printing paper.",
+    image: beamImage,
+    tags: ["Composite Materials", "Methodology"],
+    slug: "paper-beam",
+    year: "April 2024",
     category: ""
   }
 ];
@@ -72,11 +72,13 @@ const ProjectsShowcase = () => {
         {/* View all projects */}
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
-            More projects coming soon...
+          
           </p>
           <div className="inline-flex items-center gap-2 text-sm text-primary">
             <span className="w-1 h-1 bg-primary rounded-full animate-pulse"></span>
-            Currently developing new prototypes
+                 <p className="text-muted-foreground mb-4">
+            More projects coming soon...
+          </p>
           </div>
         </div>
       </div>
