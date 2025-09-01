@@ -41,8 +41,7 @@ const ProjectsShowcase = () => {
             Engineering Projects
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A collection of mechanical engineering projects showcasing innovation in design, 
-            analysis, and problem-solving across various domains.
+            A collection of engineering projects i have worked on.
           </p>
           
           {/* Blueprint accent line */}
