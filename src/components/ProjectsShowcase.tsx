@@ -1,7 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import dispenserImage from "@/assets/clipboard-hero.gif";
-import energyImage from "@/assets/energy-storage-project.jpg";
-import jigImage from "@/assets/manufacturing-jig-project.jpg";
+
 
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projects = [
@@ -17,7 +16,7 @@ const projects = [
   {
     title: "Sustainable Energy Storage",
     description: "Developed a mechanical energy storage system using flywheel technology for renewable energy applications.",
-    image: energyImage,
+    image: dispenserImage,
     tags: ["Mechanical Design", "Energy Systems", "SolidWorks", "FEA Analysis"],
     slug: "energy-storage-flywheel",
     year: "2023",
