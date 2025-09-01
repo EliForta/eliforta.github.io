@@ -9,7 +9,7 @@ const Index = () => {
       <main>
         <Hero />
         <ProjectsShowcase />
-        
+{/*         
         {/* About Section */}
         <section id="about" className="py-20 bg-muted/20">
           <div className="container mx-auto px-6">
@@ -67,7 +67,7 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
+         */}
         {/* Contact Section */}
         <section id="contact" className="py-20">
           <div className="container mx-auto px-6">
