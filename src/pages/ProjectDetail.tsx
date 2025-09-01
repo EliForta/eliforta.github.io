@@ -16,22 +16,20 @@ const projectData = {
     duration: "4 months",
     team: "Team Lead",
     status: "Completed",
-    description: "Designed and prototyped a precision landing mechanism for commercial drones using servo motors and computer vision integration. The system enables autonomous landing on moving platforms with sub-centimeter accuracy.",
-    challenge: "Commercial drones require precise landing capabilities for applications such as package delivery and inspection tasks. Existing systems lack the precision needed for landing on moving or confined platforms.",
-    solution: "Developed a multi-axis servo control system integrated with computer vision algorithms to enable real-time tracking and precision landing. The mechanism compensates for platform movement and environmental factors.",
-    technologies: ["SolidWorks", "Arduino", "Computer Vision", "Servo Control", "3D Printing", "Prototyping"],
+    description: "Designed and prototyped a automatic clipboard dispensor for volunteers with disabilities.",
+    challenge: "The main challenge was designing a device that was intuitive and accessible for users with a wide range of severe disabilities, making the difficult fine motor task of picking up a clipboard simple. A second challenge arose when we discovered another team was developing a different solution for the same station. We decided to proactively collaborate with them, redesigning our dispenser to ensure our projects would be fully integrated and compatible.",
+    solution: "Developed a clipboard dispenser that automatically provides a single clipboard at the push of a large, easily accessible button. The design was created using OnShape, with parts fabricated using a CNC router and a 3D printer, and the device was programmed using Arduino/C++. Throughout the development process, we worked closely with the charity to gather feedback and refine multiple prototypes, resulting in a final product that was more engaging and allowed for faster participation at the station.",
+    technologies: ["CAD", "Arduino", "CNC Machining", "Servo Control", "3D Printing", "Prototyping"],
     features: [
-      "Sub-centimeter landing accuracy",
-      "Real-time platform tracking",
-      "Weather-resistant design",
-      "Fail-safe mechanisms",
-      "Modular attachment system"
+      "Single button operation",
+      "Simple, 4 step setup",
+      "Rechargeable via USB-C",
+      "Automatic inactivity light dimming to extend battery life",
+      "User replacable front spacer to accomodate different clipboards"
     ],
     results: [
-      "95% landing success rate in controlled tests",
-      "40% improvement over baseline systems",
-      "Patent application submitted",
-      "Presented at regional engineering conference"
+      "50% increase in user engagement",
+      "Dramatically lowered time to complete station"
     ],
     images: [
     //  droneImage
@@ -251,7 +249,7 @@ const ProjectDetail = () => {
                 
                 <div className="text-center">
                   <p className="text-sm text-muted-foreground">
-                    Interested in this project?
+                    
                   </p>
                 </div>
               </div>
