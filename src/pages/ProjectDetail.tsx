@@ -9,12 +9,12 @@ import Header from "@/components/Header";
 
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projectData = {
-  'autonomous-drone-landing': {
-    title: "Autonomous Drone Landing System",
-    category: "Robotics",
-    year: "2024",
-    duration: "6 months",
-    team: "Solo Project",
+  'clipboard-dispenser': {
+    title: "Accessible Clipboard Dispenser",
+    category: "",
+    year: "January 2025 - May 2025",
+    duration: "4 months",
+    team: "Team Lead",
     status: "Completed",
     description: "Designed and prototyped a precision landing mechanism for commercial drones using servo motors and computer vision integration. The system enables autonomous landing on moving platforms with sub-centimeter accuracy.",
     challenge: "Commercial drones require precise landing capabilities for applications such as package delivery and inspection tasks. Existing systems lack the precision needed for landing on moving or confined platforms.",
@@ -76,7 +76,7 @@ const ProjectDetail = () => {
         <Header />
         <div className="container mx-auto px-6 py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-          <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist, or has not been completely added yet.</p>
           <Link to="/">
             <Button>Return Home</Button>
           </Link>
@@ -253,12 +253,6 @@ const ProjectDetail = () => {
                   <p className="text-sm text-muted-foreground">
                     Interested in this project?
                   </p>
-                  <a 
-                    href="mailto:engineer@example.com" 
-                    className="text-primary hover:underline font-medium"
-                  >
-                    Let's discuss it
-                  </a>
                 </div>
               </div>
             </div>
