@@ -1,5 +1,5 @@
 import ProjectCard from "./ProjectCard";
-import dispenserImage from "@/assets/clipboard-hero.jpg";
+import dispenserImage from "@/assets/clipboard-hero.gif";
 import energyImage from "@/assets/energy-storage-project.jpg";
 import jigImage from "@/assets/manufacturing-jig-project.jpg";
 
