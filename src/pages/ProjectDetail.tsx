@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 
-import dispenserImage from "@/assets/dispenser-hero.gif";
+import dispenserImage from "@/assets/clipboard-hero.gif";
 // import energyImage from "@/assets/energy-storage-project.jpg";
 // import jigImage from "@/assets/manufacturing-jig-project.jpg";
 
