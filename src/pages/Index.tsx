@@ -84,13 +84,13 @@ const Index = () => {
               </h2>
               
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Interested in discussing engineering projects, internship opportunities, 
-                or potential collaborations? I'd love to hear from you.
+                Interested in discussing engineering projects,
+                or internship opportunities? I'd love to hear from you.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="mailto:engineer@example.com" 
+                  href="mailto:eliezer@forta.com" 
                   className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
                 >
                   <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,7 +99,7 @@ const Index = () => {
                   Email Me
                 </a>
                 <a 
-                  href="https://linkedin.com/in/your-profile" 
+                  href="https://linkedin.com/in/eliforta" 
                   className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted/50 transition-colors"
                 >
                   <svg className="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -118,12 +118,12 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="font-mono text-sm text-muted-foreground mb-4 md:mb-0">
-              © 2024 Mechanical Engineer Portfolio
+              
             </div>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <span>Built with precision</span>
+              <span></span>
               <div className="w-1 h-1 bg-primary rounded-full"></div>
-              <span>Designed for impact</span>
+              <span>Designing for impact</span>
             </div>
           </div>
         </div>
