@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 
-// import droneImage from "@/assets/drone-landing-project.jpg";
+import dispenserImage from "@/assets/dispenser-hero.gif";
 // import energyImage from "@/assets/energy-storage-project.jpg";
 // import jigImage from "@/assets/manufacturing-jig-project.jpg";
 
@@ -32,7 +32,7 @@ const projectData = {
       "Dramatically lowered time to complete station"
     ],
     images: [
-    //  droneImage
+     dispenserImage
     ]
   },
   'energy-storage-flywheel': {
