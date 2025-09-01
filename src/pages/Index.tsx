@@ -9,65 +9,8 @@ const Index = () => {
       <main>
         <Hero />
         <ProjectsShowcase />
-{/*         
-        {/* About Section */}
-        <section id="about" className="py-20 bg-muted/20">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-background/50 border border-border mb-4">
-                    <span className="w-2 h-2 bg-primary rounded-full"></span>
-                    <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
-                      About Me
-                    </span>
-                  </div>
-                  
-                  <h2 className="text-3xl font-bold mb-6">
-                    Passionate About
-                    <span className="block text-primary">Mechanical Innovation</span>
-                  </h2>
-                  
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    As a mechanical engineering student, I'm driven by the challenge of solving 
-                    complex problems through innovative design and precise engineering. My work 
-                    spans from CAD modeling and finite element analysis to hands-on prototyping 
-                    and testing.
-                  </p>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm">SolidWorks & AutoCAD Certified</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-technical-orange rounded-full"></div>
-                      <span className="text-sm">Experience with FEA & CFD Analysis</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-accent rounded-full"></div>
-                      <span className="text-sm">3D Printing & Rapid Prototyping</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="relative">
-                  <div className="aspect-square bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center border border-border/50">
-                    <div className="text-center">
-                      <div className="w-24 h-24 mx-auto mb-4 bg-primary/20 rounded-lg flex items-center justify-center">
-                        <svg className="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                        </svg>
-                      </div>
-                      <p className="font-mono text-sm text-muted-foreground">Engineering Excellence</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-         */}
+   
+         
         {/* Contact Section */}
         <section id="contact" className="py-20">
           <div className="container mx-auto px-6">
