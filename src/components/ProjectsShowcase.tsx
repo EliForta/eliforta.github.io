@@ -1,18 +1,18 @@
 import ProjectCard from "./ProjectCard";
-import droneImage from "@/assets/drone-landing-project.jpg";
+import dispenserImage from "@/assets/clipboard-hero.jpg";
 import energyImage from "@/assets/energy-storage-project.jpg";
 import jigImage from "@/assets/manufacturing-jig-project.jpg";
 
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projects = [
   {
-    title: "Autonomous Drone Landing System",
-    description: "Designed and prototyped a precision landing mechanism for commercial drones using servo motors and computer vision integration.",
-    image: droneImage,
-    tags: ["CAD Design", "Prototyping", "Servo Systems", "Computer Vision"],
-    slug: "autonomous-drone-landing",
-    year: "2024",
-    category: "Robotics"
+    title: "Accessible Clipboard Dispenser",
+    description: "Designed and prototyped a automatic clipboard dispensor for volunteers with disabilities.",
+    image: dispenserImage,
+    tags: ["CAD Design", "Prototyping", "3D Printing", "Programming", "CNC Machining"],
+    slug: "clipboard-dispenser",
+    year: "January 2025 - May 2025",
+    category: ""
   },
   {
     title: "Sustainable Energy Storage",
@@ -21,43 +21,7 @@ const projects = [
     tags: ["Mechanical Design", "Energy Systems", "SolidWorks", "FEA Analysis"],
     slug: "energy-storage-flywheel",
     year: "2023",
-    category: "Energy Systems"
-  },
-  {
-    title: "Precision Manufacturing Jig",
-    description: "Created custom manufacturing fixtures to improve production accuracy and reduce setup time by 40%.",
-    image: jigImage,
-    tags: ["Manufacturing", "Precision Tools", "CNC", "Quality Control"],
-    slug: "manufacturing-jig",
-    year: "2023",
-    category: "Manufacturing"
-  },
-  {
-    title: "Biomechanical Prosthetic Hand",
-    description: "Engineered a low-cost prosthetic hand mechanism with improved grip strength and dexterity for developing markets.",
-    image: "/api/placeholder/400/250",
-    tags: ["Biomechanics", "3D Printing", "Mechanism Design", "Medical Device"],
-    slug: "prosthetic-hand",
-    year: "2024",
-    category: "Biomedical"
-  },
-  {
-    title: "Thermal Management System",
-    description: "Designed cooling solution for high-performance computing using heat pipes and optimized fin geometry.",
-    image: "/api/placeholder/400/250",
-    tags: ["Thermal Analysis", "Heat Transfer", "ANSYS", "Optimization"],
-    slug: "thermal-management",
-    year: "2023",
-    category: "Thermal Systems"
-  },
-  {
-    title: "Automated Assembly Line",
-    description: "Developed conveyor system with pneumatic actuators and PLC control for small-scale production automation.",
-    image: "/api/placeholder/400/250",
-    tags: ["Automation", "PLC Programming", "Pneumatics", "Industrial Design"],
-    slug: "assembly-line",
-    year: "2024",
-    category: "Automation"
+    category: ""
   }
 ];
 
