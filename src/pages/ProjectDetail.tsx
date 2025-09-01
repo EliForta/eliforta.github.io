@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 
-import droneImage from "@/assets/drone-landing-project.jpg";
-import energyImage from "@/assets/energy-storage-project.jpg";
-import jigImage from "@/assets/manufacturing-jig-project.jpg";
+// import droneImage from "@/assets/drone-landing-project.jpg";
+// import energyImage from "@/assets/energy-storage-project.jpg";
+// import jigImage from "@/assets/manufacturing-jig-project.jpg";
 
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projectData = {
@@ -34,7 +34,7 @@ const projectData = {
       "Presented at regional engineering conference"
     ],
     images: [
-      droneImage
+    //  droneImage
     ]
   },
   'energy-storage-flywheel': {
@@ -62,7 +62,7 @@ const projectData = {
       "Published research in engineering journal"
     ],
     images: [
-      energyImage
+   //   energyImage
     ]
   }
 };
