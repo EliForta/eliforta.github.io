@@ -22,17 +22,16 @@ const Hero = () => {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-            Engineering
+            Eli
             <span className="block text-primary relative">
-              Innovation
+              Forta
               {/* Blueprint line decoration */}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-primary/30"></div>
             </span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-            Designing mechanical solutions through precision, creativity, and technical expertise. 
-            Explore my portfolio of projects ranging from CAD designs to prototype development.
+            
           </p>
           
           <div className="flex justify-center">
