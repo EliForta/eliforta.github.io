@@ -84,7 +84,7 @@ const projectData = {
       beamImage
     ],
     gallery: [
-      { src: beamTest, caption: "Final beam during load test" }
+      { src: beamTest, caption: "Final beam during load test" },
       { src: beamGraph, caption: "Load cell graph. Paper beam compared to wood beams of similar size.\n (note: the test limits were set to 2000lbs)" }
     ]
   }
