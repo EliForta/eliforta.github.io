@@ -145,7 +145,7 @@ const projectData = {
     team: "Solo",
     status: "Completed",
     description: "A folding bag hanger to hang a bag off the edge of a table",
-    challenge: "Designed for a design competition. The goal was to design a 3D printable item with the that involved storage",
+    challenge: "Designed for a design competition. The goal was to design a 3D printable item that involved storage",
     solution: "I designed and tested a strong 3D printable hook that can hold 10lbs - 25lbs, for the fully 3D printed and hardware version respectively.\n  Tested design with FEA analysis and weight testing (tested until faliure)",
     technologies: ["CAD Design", "3D Printing", "FEA"],
     features: [
