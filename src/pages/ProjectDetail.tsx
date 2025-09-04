@@ -19,6 +19,8 @@ import clipboardSpacers from "@/assets/clipboardSpacers.jpeg";
 import clipboardBackSide from "@/assets/clipboardBackSide.jpeg";
 import clipboardControl from "@/assets/clipboardControl.jpeg";
 
+
+import beamGraph from "@/assets/graph.png";
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projectData = {
   'clipboard-dispenser': {
@@ -61,31 +63,29 @@ const projectData = {
   },
   'paper-beam': {
     title: "Composite Paper Beam",
-    category: "Materials & Structures",
+    category: "Materials",
     year: "April 2024",
     duration: "1 month",
-    team: "Team of 4",
-    status: "Tested",
+    team: "Solo",
+    status: "Completed",
     description: "Constructed and tested a paper-based composite beam that supported a 2000 lb+ load using only Elmer's glue and standard printing paper.",
-    challenge: "Achieve high load capacity using ultra-low-cost materials while maintaining predictable failure modes and manufacturability.",
-    solution: "Optimized laminate stacking, glue line control, and cross-sectional geometry; validated with incremental load testing.",
-    technologies: ["Methodology", "Composite Materials", "FEA Assumptions", "Testing"],
+    challenge: "The challenge was to construct a paper beam that could support atlaest 200lbs. The beam could only be made with Elmer's glue, and standard 8.5 x 11 printer paper. Additionally, I was aiming to break the 8 year university record of ~1800lbs.",
+    solution: "Maximized final composite strength by developing a precise fabrication methodology using custom jigs for uniform cutting, glue application, and pressing",
+    technologies: ["Methodology", "Composite Materials", "Testing"],
     features: [
       "2000 lb+ supported load",
-      "Optimized layup schedule",
-      "Low-cost manufacturing",
       "Repeatable assembly process"
     ],
     results: [
       "Exceeded target load",
-      "Documented failure modes",
-      "Presented methodology write-up"
+      "Set a new record"
     ],
     images: [
       beamImage
     ],
     gallery: [
       { src: beamTest, caption: "Final beam during load test" }
+      { src: beamGraph, caption: "Load cell graph. Paper beam compared to wood beams of similar size.\n (note: the test limits were set to 2000lbs)" }
     ]
   }
 };
@@ -99,7 +99,7 @@ const ProjectDetail = () => {
         <Header />
         <div className="container mx-auto px-6 py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-          <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist, or the page has not been completed yet. Check back soon!.</p>
           <Link to="/">
             <Button>Return Home</Button>
           </Link>
