@@ -32,7 +32,7 @@ import hangHook from "@/assets/hangHook.png";
 import hangHookAssembly from "@/assets/hangClipAssembly.gif";
 import hangHookOpen from "@/assets/hangClipOpen.jpeg";
 import hangHookFold from "@/assets/hangClipFold.jpeg";
-import hangHookColors from "@/assets/hangClipColors.jpeg";
+import hangHookColors from "@/assets/HangClipColors.jpeg";
 import hangHookFEA from "@/assets/hangClipFEA.png";
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projectData = {
@@ -130,7 +130,7 @@ const projectData = {
     ],
     gallery: [
       { src: controllerImage, caption: "Addon attached to controller" },
-      { src: controllerGif, caption: "" },
+      { src: controllerGif, caption: "Device in use" },
       { src: controllerWC, caption: "CAD design with 3D scan of controller" }
     ]
   },
