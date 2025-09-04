@@ -1,66 +1,71 @@
+
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
+import Gallery from "@/components/Gallery";
 
 import dispenserImage from "@/assets/clipboard-hero.gif";
-// import energyImage from "@/assets/energy-storage-project.jpg";
-// import jigImage from "@/assets/manufacturing-jig-project.jpg";
+import beamImage from "@/assets/beam-hero.jpg";
 
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projectData = {
   'clipboard-dispenser': {
     title: "Accessible Clipboard Dispenser",
-    category: "",
-    year: "January 2025 - May 2025",
-    duration: "4 months",
-    team: "Team Lead",
+    category: "Assistive Devices",
+    year: "Jan 2025 – May 2025",
+    duration: "5 months",
+    team: "Solo Project",
     status: "Completed",
-    description: "Designed and prototyped a automatic clipboard dispensor for volunteers with disabilities.",
-    challenge: "The main challenge was designing a device that was intuitive and accessible for users with a wide range of severe disabilities, making the difficult fine motor task of picking up a clipboard simple. A second challenge arose when we discovered another team was developing a different solution for the same station. We decided to proactively collaborate with them, redesigning our dispenser to ensure our projects would be fully integrated and compatible.",
-    solution: "Developed a clipboard dispenser that automatically provides a single clipboard at the push of a large, easily accessible button. The design was created using OnShape, with parts fabricated using a CNC router and a 3D printer, and the device was programmed using Arduino/C++. Throughout the development process, we worked closely with the charity to gather feedback and refine multiple prototypes, resulting in a final product that was more engaging and allowed for faster participation at the station.",
-    technologies: ["CAD", "Arduino", "CNC Machining", "Servo Control", "3D Printing", "Prototyping"],
+    description: "Designed and prototyped an automatic clipboard dispenser enabling volunteers with disabilities to quickly retrieve and return clipboards independently.",
+    challenge: "Volunteers with limited dexterity needed a reliable, easy-to-use dispenser mechanism to handle clipboards independently in a busy environment.",
+    solution: "Developed a compact mechanism with guided rails, low-force triggers, and a microcontroller-based actuator sequence for smooth dispense and return cycles.",
+    technologies: ["SolidWorks", "3D Printing", "Arduino", "CNC Machining", "Prototyping"],
     features: [
-      "Single button operation",
-      "Simple, 4 step setup",
-      "Rechargeable via USB-C",
-      "Automatic inactivity light dimming to extend battery life",
-      "User replacable front spacer to accomodate different clipboards"
+      "Low-force ergonomic trigger",
+      "Jam-resistant feed path",
+      "Modular maintenance panels",
+      "Compact benchtop footprint"
     ],
     results: [
-      "50% increase in user engagement",
-      "Dramatically lowered time to complete station"
+      "Successful deployments in pilot tests",
+      "Improved independence for volunteers",
+      "Reduced queue time during peak hours"
     ],
     images: [
-     dispenserImage
+      dispenserImage
+    ],
+    gallery: [
+      { src: dispenserImage, caption: "Final prototype in operation" }
     ]
   },
-  'energy-storage-flywheel': {
-    title: "Sustainable Energy Storage",
-    category: "Energy Systems",
-    year: "2023",
-    duration: "8 months",
-    team: "Team of 3",
-    status: "Prototype Complete",
-    description: "Developed a mechanical energy storage system using flywheel technology for renewable energy applications. The system stores kinetic energy during peak production and releases it during demand periods.",
-    challenge: "Renewable energy sources like solar and wind are intermittent, requiring efficient storage solutions that don't rely on expensive batteries or rare earth materials.",
-    solution: "Designed a high-speed flywheel system with magnetic bearings and carbon fiber rotor assembly to minimize friction losses and maximize energy density.",
-    technologies: ["ANSYS", "SolidWorks", "FEA Analysis", "Composite Materials", "Magnetic Bearings", "Control Systems"],
+  'paper-beam': {
+    title: "Composite Paper Beam",
+    category: "Materials & Structures",
+    year: "April 2024",
+    duration: "1 month",
+    team: "Team of 4",
+    status: "Tested",
+    description: "Constructed and tested a paper-based composite beam that supported a 2000 lb+ load using only Elmer's glue and standard printing paper.",
+    challenge: "Achieve high load capacity using ultra-low-cost materials while maintaining predictable failure modes and manufacturability.",
+    solution: "Optimized laminate stacking, glue line control, and cross-sectional geometry; validated with incremental load testing.",
+    technologies: ["Methodology", "Composite Materials", "FEA Assumptions", "Testing"],
     features: [
-      "95% round-trip efficiency",
-      "50,000+ charge cycles",
-      "Carbon fiber rotor design",
-      "Magnetic levitation bearings",
-      "Integrated power electronics"
+      "2000 lb+ supported load",
+      "Optimized layup schedule",
+      "Low-cost manufacturing",
+      "Repeatable assembly process"
     ],
     results: [
-      "Successfully demonstrated 10kWh storage capacity",
-      "Achieved 95% energy conversion efficiency",
-      "Cost reduction of 30% compared to battery systems",
-      "Published research in engineering journal"
+      "Exceeded target load",
+      "Documented failure modes",
+      "Presented methodology write-up"
     ],
     images: [
-   //   energyImage
+      beamImage
+    ],
+    gallery: [
+      { src: beamImage, caption: "Final beam during load test" }
     ]
   }
 };
@@ -74,7 +79,7 @@ const ProjectDetail = () => {
         <Header />
         <div className="container mx-auto px-6 py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-          <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist, or has not been completely added yet.</p>
+          <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
           <Link to="/">
             <Button>Return Home</Button>
           </Link>
@@ -235,6 +240,14 @@ const ProjectDetail = () => {
               </div>
             </div>
 
+            {/* Gallery */}
+            {Array.isArray((project as any).gallery) && (project as any).gallery.length > 0 && (
+              <Gallery 
+                items={(project as any).gallery}
+                className="max-w-4xl mx-auto"
+              />
+            )}
+
             {/* Next project navigation */}
             <div className="border-t border-border pt-8">
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -249,8 +262,14 @@ const ProjectDetail = () => {
                 
                 <div className="text-center">
                   <p className="text-sm text-muted-foreground">
-                    
+                    Interested in this project?
                   </p>
+                  <a 
+                    href="mailto:engineer@example.com" 
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Let's discuss it
+                  </a>
                 </div>
               </div>
             </div>
