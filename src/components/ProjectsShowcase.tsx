@@ -1,7 +1,10 @@
 import ProjectCard from "./ProjectCard";
 import dispenserImage from "@/assets/clipboardDrawing.png";
 import beamImage from "@/assets/beam-hero.jpg";
-
+import CNC from "@/assets/CNC.jpeg";
+import HangClipDrawing from "@/assets/hangHook.png";
+import fidgetDrawing from "@/assets/fidgetHero.png";
+import controller from "@/assets/controllerHero.png";
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projects = [
   {
@@ -20,6 +23,42 @@ const projects = [
     tags: ["Composite Materials", "Methodology"],
     slug: "paper-beam",
     year: "April 2024",
+    category: ""
+  },
+    {
+    title: "CNC Router",
+    description: "Building a DIY CNC router.",
+    image: CNC,
+    tags: ["CNC Machining", "3D Printing"],
+    slug: "CNC",
+    year: "Ongoing",
+    category: ""
+  },
+    {
+    title: "HangClip - 3D printable folding bag hanger",
+    description: "A folding bag holder to hang a bag off the edge of a table.",
+    image: HangClipDrawing,
+    tags: ["CAD Design", "3D Printing", "Testing", "Prototyping"],
+    slug: "hangClip",
+    year: "September 2024",
+    category: ""
+  },
+    {
+    title: "Sliding Magnetic Fidget Toy",
+    description: "Designed and sold a magnetic, customable micro fidget toy",
+    image: fidgetDrawing,
+    tags: ["CAD Design", "3D Printing", "Prototyping"],
+    slug: "fidget",
+    year: "June 2023 - July 2023",
+    category: ""
+  },
+    {
+    title: "Controller Accessability Addon",
+    description: "Designed a addon for the Nintendo Switch Pro Controller to allow for easier use of triggers and bumpers for people with disabilites.",
+    image: controller,
+    tags: ["CAD Design", "3D Printing"],
+    slug: "controller",
+    year: "December 2021",
     category: ""
   }
 ];
