@@ -9,6 +9,7 @@ import dispenserDrawing from "@/assets/clipboardDrawing.png";
 
 import dispenserImage from "@/assets/clipboard-hero.gif";
 import beamImage from "@/assets/beam-hero.jpg";
+import codeImage from "@/assets/clipboardCode.png";
 import clipboardEarlyWiring from "@/assets/clipboardEarlyWiring.jpeg";
 import beamTest from "@/assets/beamTest.png";
 import clipboardInterier from "@/assets/clipboardInterier.jpeg";
@@ -27,8 +28,8 @@ const projectData = {
     duration: "4 months",
     team: "Team Lead",
     status: "Completed",
-    description: "Designed and prototyped an automatic clipboard dispenser enabling volunteers with disabilities to quickly retrieve and return clipboards independently.",
-    challenge: "Volunteers with limited dexterity needed a reliable, easy-to-use dispenser mechanism to handle clipboards independently in a busy environment.",
+    description: "Designed and prototyped a automatic clipboard dispensor for volunteers with disabilities.",
+    challenge: " ",
     solution: "Developed a compact mechanism with guided rails, low-force triggers, and a microcontroller-based actuator sequence for smooth dispense and return cycles.",
     technologies: ["CAD", "3D Printing", "Arduino", "CNC Machining", "Prototyping"],
     features: [
@@ -50,6 +51,7 @@ const projectData = {
        { src: clipboardSides, caption: "Wooden side panels cut out on my CNC router" },
       { src: clipboardEarlyWiring, caption: "Initial wiring of prototype using WAGOs" },
       { src: clipboardFinalWiring, caption: "Final, soldered wiring of device" },
+       { src: clipboardCode, caption: "Code developed and tested in simulator for faster development" },
       { src: clipboardBackSide, caption: "Back of device, with battery, servo, and control box" },
       { src: clipboardControl, caption: "Control box for device, with labeled ports for easier setup" },
        { src: clipboardInterier, caption: "Inside of device, with recessed LEDs on sides" },
