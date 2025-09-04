@@ -38,7 +38,7 @@ const projects = [
     title: "HangClip - 3D printable folding bag hanger",
     description: "A folding bag hanger to hang a bag off the edge of a table",
     image: HangClipDrawing,
-    tags: ["CAD Design", "3D Printing", "Testing", "Prototyping"],
+    tags: ["CAD Design", "3D Printing", "Testing", "Prototyping", "FEA analysis"],
     slug: "hangClip",
     year: "September 2024",
     category: ""
