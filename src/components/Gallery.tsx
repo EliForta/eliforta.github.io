@@ -25,12 +25,14 @@ const Gallery: React.FC<GalleryProps> = ({ items, className }) => {
       <div className="[column-fill:_balance] sm:columns-2 lg:columns-3 gap-4">
         {items.map((item, index) => (
           <figure key={index} className="mb-4 break-inside-avoid rounded-lg overflow-hidden border border-border/50 bg-muted/10">
-            <img
-              src={item.src}
-              alt={item.alt || "Project image"}
-              className="w-full h-auto object-cover transition-transform duration-500 hover:scale-[1.02]"
-              loading="lazy"
-            />
+            <a href={item.src} target="_blank" rel="noopener noreferrer" className="block">
+              <img
+                src={item.src}
+                alt={item.alt || "Project image"}
+                className="w-full h-auto object-cover transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
+                loading="lazy"
+              />
+            </a>
             {item.caption && (
               <figcaption className="px-3 py-2 text-xs text-muted-foreground border-t border-border/50 bg-background/60">
                 {item.caption}
