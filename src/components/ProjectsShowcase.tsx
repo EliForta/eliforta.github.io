@@ -9,7 +9,7 @@ import controller from "@/assets/controllerHero.png";
 const projects = [
   {
     title: "Accessible Clipboard Dispenser",
-    description: "Designed and prototyped a automatic clipboard dispensor for volunteers with disabilities.",
+    description: "Designed and prototyped a automatic clipboard dispensor for volunteers with disabilities",
     image: dispenserImage,
     tags: ["CAD Design", "Prototyping", "3D Printing", "Programming", "CNC Machining"],
     slug: "clipboard-dispenser",
@@ -18,7 +18,7 @@ const projects = [
   },
   {
     title: "Composite Paper Beam",
-    description: "Constructed a beam that supported a 2000lb+ load using only Elmers glue and standard printing paper.",
+    description: "Constructed a beam that supported a 2000lb+ load using only Elmers glue and standard printer paper",
     image: beamImage,
     tags: ["Composite Materials", "Methodology"],
     slug: "paper-beam",
@@ -36,7 +36,7 @@ const projects = [
   },
     {
     title: "HangClip - 3D printable folding bag hanger",
-    description: "A folding bag holder to hang a bag off the edge of a table.",
+    description: "A folding bag hanger to hang a bag off the edge of a table",
     image: HangClipDrawing,
     tags: ["CAD Design", "3D Printing", "Testing", "Prototyping"],
     slug: "hangClip",
