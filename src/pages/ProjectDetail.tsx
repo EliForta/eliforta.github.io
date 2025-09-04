@@ -21,29 +21,45 @@ import clipboardControl from "@/assets/clipboardControl.jpeg";
 
 
 import beamGraph from "@/assets/graph.png";
+
+import beamGraph from "@/assets/graph.png";
+import controllerHero from "@/assets/controllerHero.png";
+import controllerImage from "@/assets/controllerImage.png";
+import controllerGif from "@/assets/controllerGif.gif";
+import controllerWC from "@/assets/controllerWC.png";
+
+import hangHook from "@/assets/hangHook.png";
+import hangHookAssembly from "@/assets/hangClipAssembly.gif";
+import hangHookOpen from "@/assets/hangClipOpen.jpeg";
+import hangHookFold from "@/assets/hangClipFold.jpeg";
+import hangHookColors from "@/assets/hangClipColors.jpeg";
+import hangHookFEA from "@/assets/hangClipFEA.png";
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projectData = {
   'clipboard-dispenser': {
     title: "Accessible Clipboard Dispenser",
-    category: "Assistive Devices",
+    category: "",
     year: "Jan 2025 – May 2025",
     duration: "4 months",
     team: "Team Lead",
     status: "Completed",
-    description: "Designed and prototyped a automatic clipboard dispensor for volunteers with disabilities.",
-    challenge: " ",
-    solution: "Developed a compact mechanism with guided rails, low-force triggers, and a microcontroller-based actuator sequence for smooth dispense and return cycles.",
+    description: "Designed and prototyped an automatic clipboard dispensor for volunteers with disabilities.",
+    challenge: "A charity had an operation where individuals with severe disabilites could create items for donation. This was Accomplished via dedicated stations for each step. My team and I observed a engagement and efficiency issue at the first station, where the user was instructed to obtain a clipboard.",
+    solution: "Designed a device that reliably dispenses clipboards for the user via a red button. This final prototype is based off of 2 previous prototypes and constant communication with the stakeholders.",
     technologies: ["CAD", "3D Printing", "Arduino", "CNC Machining", "Prototyping"],
     features: [
-      "Low-force ergonomic trigger",
-      "Jam-resistant feed path",
-      "Modular maintenance panels",
-      "Compact benchtop footprint"
+      "Extremely simple operation",
+      "Jam-resistant mechanism",
+      "All day battery life",
+      "Compact and portable footprint",
+      "Easy setup, and easy charging with USB-C",
+      "Stakeholder requested features inlcuding: LED lights, window and ramp with rollers",
+      "Long wire on button ensures that a user can press it. the button can be moved within arms reach, placed on the floor and operated by foot, or be held by an assistent for users in wheelchairs"
     ],
     results: [
-      "Successful deployments in pilot tests",
-      "Improved independence for volunteers",
-      "Reduced queue time during peak hours"
+      "50% increase in engagment",
+      "Reduced station time to 15s",
+      "Allows users to be more independent"
     ],
     images: [
       dispenserDrawing
@@ -68,7 +84,7 @@ const projectData = {
     duration: "1 month",
     team: "Solo",
     status: "Completed",
-    description: "Constructed and tested a paper-based composite beam that supported a 2000 lb+ load using only Elmer's glue and standard printing paper.",
+    description: "Constructed and tested a paper and glue composite beam that supported a 2000 lb+ load, breaking the university record",
     challenge: "The challenge was to construct a paper beam that could support atlaest 200lbs. The beam could only be made with Elmer's glue, and standard 8.5 x 11 printer paper. Additionally, I was aiming to break the 8 year university record of ~1800lbs.",
     solution: "Maximized final composite strength by developing a precise fabrication methodology using custom jigs for uniform cutting, glue application, and pressing",
     technologies: ["Methodology", "Composite Materials", "Testing"],
@@ -86,6 +102,69 @@ const projectData = {
     gallery: [
       { src: beamTest, caption: "Final beam during load test" },
       { src: beamGraph, caption: "Load cell graph. Paper beam compared to wood beams of similar size.\n (note: the test limits were set to 2000lbs)" }
+    ]
+  },
+    'controller': {
+    title: "Controller Accessability Addon",
+    category: "Accessability",
+    year: "December 2021",
+    duration: "1 month",
+    team: "Solo",
+    status: "Completed",
+    description: "Designed a addon for the Nintendo Switch Pro Controller to allow for easier use of triggers and bumpers for people with disabilites.",
+    challenge: "Designed for a design competition. The goal was to design a 3D printable addon that would help increase accessability in gaming. I noticed that there werent many addons for the controller I had on hand, the Nintendo Switch Pro Controller, so I focused on that",
+    solution: "I designed a print in place snap on addon that allows the bumpers and triggers to be used from the front of the controller",
+    technologies: ["CAD Design", "3D Printing"],
+    features: [
+      "Open Source",
+      "Threaded hole on the back to allow greater adaptability",
+      "Print in place",
+      "Easy installation and removal",
+      "Keeps the USB-C port accessable"
+    ],
+    results: [
+      "Featuered on the list of controller modifications maintained by The Controller Project",
+    ],
+    images: [
+      controllerHero
+    ],
+    gallery: [
+      { src: controllerImage, caption: "Addon attached to controller" },
+      { src: controllerGif, caption: "" },
+      { src: controllerWC, caption: "CAD design with 3D scan of controller" }
+    ]
+  },
+      'hangClip': {
+    title: "HangClip - 3D printable folding bag hanger",
+    category: "",
+    year: "September 2024",
+    duration: "1 month",
+    team: "Solo",
+    status: "Completed",
+    description: "A folding bag hanger to hang a bag off the edge of a table",
+    challenge: "Designed for a design competition. The goal was to design a 3D printable item with the that involved storage",
+    solution: "I designed and tested a strong 3D printable hook that can hold 10lbs - 25lbs, for the fully 3D printed and hardware version respectively.\n  Tested design with FEA analysis and weight testing (tested until faliure)",
+    technologies: ["CAD Design", "3D Printing", "FEA"],
+    features: [
+      "Folds around bag handle so its always accessable",
+      "Dimple on hook ensures the clip locks when folded, preventing loss",
+      "can be fully 3D printed, or with a M3 bolt & Locknut",
+      "Easy to use",
+      "Works on tables, bathroom stalls, railing, and more"
+    ],
+    results: [
+      "500+ Downloads",
+      "250+ 3D Prints"
+    ],
+    images: [
+      hangHook
+    ],
+    gallery: [
+        { src: hangHookOpen, caption: "HangClip in use" },
+      { src: hangHookFold, caption: "HangClip folded on backpack" },
+      { src: HangHookColors, caption: "" },
+      { src: hangHookFEA, caption: "FEA analysis on recommended load" },
+      { src: hangHookAssembly, caption: "video demonstrating assemely process" }
     ]
   }
 };
