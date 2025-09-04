@@ -1,5 +1,5 @@
 import ProjectCard from "./ProjectCard";
-import dispenserImage from "@/assets/clipboard-hero.gif";
+import dispenserImage from "@/assets/clipboardDrawing.png";
 import beamImage from "@/assets/beam-hero.jpg";
 
 // Sample project data - in a real implementation, this would come from a CMS or API
