@@ -5,8 +5,18 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Gallery from "@/components/Gallery";
 
+import dispenserDrawing from "@/assets/clipboardDrawing.png";
+
 import dispenserImage from "@/assets/clipboard-hero.gif";
 import beamImage from "@/assets/beam-hero.jpg";
+import clipboardEarlyWiring from "@/assets/clipboardEarlyWiring.jpeg";
+import beamTest from "@/assets/beamTest.png";
+import clipboardInterier from "@/assets/clipboardInterier.jpeg";
+import clipboardSides from "@/assets/clipboardSides.jpeg";
+import clipboardFinalWiring from "@/assets/clipboardFinalWiring.jpeg";
+import clipboardSpacers from "@/assets/clipboardSpacers.jpeg";
+import clipboardBackSide from "@/assets/clipboardBackSide.jpeg";
+import clipboardControl from "@/assets/clipboardControl.jpeg";
 
 // Sample project data - in a real implementation, this would come from a CMS or API
 const projectData = {
@@ -33,7 +43,7 @@ const projectData = {
       "Reduced queue time during peak hours"
     ],
     images: [
-      dispenserImage
+      dispenserDrawing
     ],
     gallery: [
      
@@ -73,7 +83,7 @@ const projectData = {
       beamImage
     ],
     gallery: [
-      { src: beamImage, caption: "Final beam during load test" }
+      { src: beamTest, caption: "Final beam during load test" }
     ]
   }
 };
