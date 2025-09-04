@@ -14,13 +14,13 @@ const projectData = {
     title: "Accessible Clipboard Dispenser",
     category: "Assistive Devices",
     year: "Jan 2025 – May 2025",
-    duration: "5 months",
-    team: "Solo Project",
+    duration: "4 months",
+    team: "Team Lead",
     status: "Completed",
     description: "Designed and prototyped an automatic clipboard dispenser enabling volunteers with disabilities to quickly retrieve and return clipboards independently.",
     challenge: "Volunteers with limited dexterity needed a reliable, easy-to-use dispenser mechanism to handle clipboards independently in a busy environment.",
     solution: "Developed a compact mechanism with guided rails, low-force triggers, and a microcontroller-based actuator sequence for smooth dispense and return cycles.",
-    technologies: ["SolidWorks", "3D Printing", "Arduino", "CNC Machining", "Prototyping"],
+    technologies: ["CAD", "3D Printing", "Arduino", "CNC Machining", "Prototyping"],
     features: [
       "Low-force ergonomic trigger",
       "Jam-resistant feed path",
@@ -36,7 +36,15 @@ const projectData = {
       dispenserImage
     ],
     gallery: [
-      { src: dispenserImage, caption: "Final prototype in operation" }
+     
+       { src: clipboardSides, caption: "Wooden side panels cut out on my CNC router" },
+      { src: clipboardEarlyWiring, caption: "Initial wiring of prototype using WAGOs" },
+      { src: clipboardFinalWiring, caption: "Final, soldered wiring of device" },
+      { src: clipboardBackSide, caption: "Back of device, with battery, servo, and control box" },
+      { src: clipboardControl, caption: "Control box for device, with labeled ports for easier setup" },
+       { src: clipboardInterier, caption: "Inside of device, with recessed LEDs on sides" },
+       { src: clipboardSpacers, caption: "User swapabble front spacers to allow multiple clipboard sizes" },
+       { src: dispenserImage, caption: "Final prototype in operation" },
     ]
   },
   'paper-beam': {
