@@ -132,6 +132,9 @@ const projectData = {
       { src: controllerImage, caption: "Addon attached to controller" },
       { src: controllerGif, caption: "Device in use" },
       { src: controllerWC, caption: "CAD design with 3D scan of controller" }
+    ],
+    links: [
+      { url: "https://www.printables.com/model/103432-nintendo-switch-pro-controller-print-in-place-snap", text: "View On Printables" }
     ]
   },
       'hangClip': {
@@ -167,8 +170,8 @@ const projectData = {
       { src: hangHookAssembly, caption: "video demonstrating assemely process" }
     ],
     links: [
-      { url: "https://github.com/example/clipboard-dispenser", text: "View Source Code" },
-      { url: "https://youtube.com/watch?v=example", text: "Watch Demo Video" }
+      { url: "https://makerworld.com/en/models/648762-hangclip-a-simple-folding-bag-hanger", text: "View On Makerworld" },
+      { url: "https://www.printables.com/model/1010952-hangclip-a-simple-folding-bag-hanger", text: "View On Printables" }
     ]
   }
 };
