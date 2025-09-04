@@ -162,7 +162,7 @@ const projectData = {
     gallery: [
         { src: hangHookOpen, caption: "HangClip in use" },
       { src: hangHookFold, caption: "HangClip folded on backpack" },
-      { src: hangHookColors, caption: "" },
+      { src: hangHookColors, caption: "Final Design" },
       { src: hangHookFEA, caption: "FEA analysis on recommended load" },
       { src: hangHookAssembly, caption: "video demonstrating assemely process" }
     ]
