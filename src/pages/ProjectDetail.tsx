@@ -9,7 +9,7 @@ import dispenserDrawing from "@/assets/clipboardDrawing.png";
 
 import dispenserImage from "@/assets/clipboard-hero.gif";
 import beamImage from "@/assets/beam-hero.jpg";
-import codeImage from "@/assets/clipboardCode.png";
+import clipboardCode from "@/assets/clipboardCode.png";
 import clipboardEarlyWiring from "@/assets/clipboardEarlyWiring.jpeg";
 import beamTest from "@/assets/beamTest.png";
 import clipboardInterier from "@/assets/clipboardInterier.jpeg";
