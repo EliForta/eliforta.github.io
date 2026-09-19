@@ -1,0 +1,373 @@
+slug = "layout-demo"
+order = 999
+title = "Section layout lab"
+subtitle = "A visual guide to the TOML templates"
+description = "A compact reference for the EF portfolio section templates and optional treatments."
+thumbnail = "project-01.png"
+thumbnail_alt = "Demo thumbnail showing the rounded enclosure CAD drawing"
+thumbnail_fit = "contain"
+thumbnail_scale = 1.1
+thumbnail_background = "#f3f4f0"
+featured = false
+year = "Reference"
+role = "Content system"
+tags = ["TOML", "Layouts", "Examples"]
+eyebrow = "Authoring reference"
+
+[[sections]]
+type = "text"
+id = "start-here"
+title = "Start here"
+eyebrow = "One file, many compositions"
+width = "reading"
+body = "Every page is assembled by ordering section blocks in a TOML file. This page uses the same blocks as a normal project, so it is both a showcase and a copyable reference."
+
+[[sections]]
+type = "text-image"
+id = "text-left-image-right"
+title = "Text left · one image right"
+eyebrow = "text-image alias"
+image = "project-02.png"
+image_alt = "Open enclosure CAD drawing"
+image_caption = "A single image beside the copy"
+body = "Use the compact text-image alias when a section only needs one large image. The longer split form exposes the same layout with more controls."
+
+[[sections]]
+type = "image-text"
+id = "image-left-text-right"
+title = "Image left · text right"
+eyebrow = "image-text alias"
+image = "project-01.png"
+image_alt = "Rounded enclosure CAD drawing"
+image_caption = "Reverse the reading direction"
+body = "The image-text alias flips the same two-column template. On small screens the content stacks into a natural reading order."
+
+[[sections]]
+type = "text-stack"
+id = "text-left-stack-right"
+title = "Text left · image stack right"
+eyebrow = "text-stack alias"
+body = "A stack is useful for showing a sequence, a set of views, or a before-and-after. Each image can have its own crop and caption."
+
+  [[sections.images]]
+  src = "project-01.png"
+  alt = "Rounded enclosure CAD drawing"
+  caption = "First view"
+  fit = "contain"
+  scale = 1.15
+  ratio = "landscape"
+
+  [[sections.images]]
+  src = "project-02.png"
+  alt = "Open enclosure CAD drawing"
+  caption = "Second view"
+  fit = "contain"
+  ratio = "landscape"
+
+[[sections]]
+type = "split"
+id = "grid-media"
+title = "Text beside a media grid"
+eyebrow = "split + grid"
+image_side = "right"
+media_layout = "grid"
+body = "Switch `media_layout` to `single`, `stack`, or `grid`. The section keeps the copy and media relationship intact while the image rhythm changes."
+
+  [[sections.images]]
+  src = "project-01.png"
+  alt = "Rounded enclosure CAD drawing"
+  fit = "contain"
+
+  [[sections.images]]
+  src = "project-02.png"
+  alt = "Open enclosure CAD drawing"
+  fit = "contain"
+
+[[sections]]
+type = "gallery"
+id = "grid-gallery"
+title = "Regular image grid"
+eyebrow = "images as a simple array"
+layout = "grid"
+columns = 2
+body = "For quick galleries, `images = [\"project-01.png\", \"project-02.png\"]` is enough. Use image tables when you need captions or art direction."
+images = ["project-01.png", "project-02.png"]
+
+[[sections]]
+type = "gallery"
+id = "collage-gallery"
+title = "Compact masonry collage"
+eyebrow = "gallery layout = collage"
+layout = "collage"
+columns = 3
+spacing = "compact"
+
+  [[sections.images]]
+  src = "project-01.png"
+  alt = "Rounded enclosure CAD drawing"
+  caption = "Primary image"
+  fit = "contain"
+
+  [[sections.images]]
+  placeholder = "A small supporting view"
+  caption = "Placeholder slots are valid too"
+  ratio = "portrait"
+
+  [[sections.images]]
+  src = "project-02.png"
+  alt = "Open enclosure CAD drawing"
+  caption = "Secondary image"
+  fit = "contain"
+  ratio = "landscape"
+
+[[sections]]
+type = "gallery"
+id = "filmstrip-gallery"
+title = "Horizontal filmstrip"
+eyebrow = "gallery layout = filmstrip"
+layout = "filmstrip"
+spacing = "compact"
+
+  [[sections.images]]
+  src = "project-01.png"
+  alt = "Rounded enclosure CAD drawing"
+  caption = "Swipe through views"
+  fit = "contain"
+
+  [[sections.images]]
+  src = "project-02.png"
+  alt = "Open enclosure CAD drawing"
+  caption = "The strip scrolls horizontally"
+  fit = "contain"
+
+[[sections]]
+type = "details"
+id = "annotated-details"
+title = "Annotated detail view"
+eyebrow = "detail template"
+image = "project-02.png"
+image_alt = "Open enclosure CAD drawing with two annotated callouts"
+note_side = "left"
+
+  [[sections.notes]]
+  title = "Feature one"
+  text = "Each note points to a normalized x/y coordinate on the source image."
+  point = [0.57, 0.49]
+
+  [[sections.notes]]
+  title = "Feature two"
+  text = "Add as many notes as the image needs; mobile moves them below the image."
+  point = [0.67, 0.79]
+
+[[sections]]
+type = "details"
+id = "right-side-details"
+title = "Notes can move right"
+eyebrow = "detail note_side = right"
+image = "project-01.png"
+image_alt = "Rounded enclosure CAD drawing with notes on the right"
+note_side = "right"
+width = "reading"
+align = "right"
+spacing = "compact"
+
+  [[sections.notes]]
+  title = "Right-hand callout"
+  text = "The same annotation renderer supports either side."
+  point = [0.72, 0.47]
+
+[[sections]]
+type = "detail"
+id = "bottom-horizontal-details"
+title = "Notes along the bottom"
+eyebrow = "note_side = bottom · note_layout = horizontal"
+image = "project-01.png"
+image_alt = "Rounded enclosure with three notes below the image"
+note_side = "bottom"
+note_layout = "horizontal"
+
+  [[sections.notes]]
+  title = "Rounded shell"
+  text = "Bottom notes keep the full image width available."
+  point = [0.35, 0.45]
+
+  [[sections.notes]]
+  title = "Central opening"
+  text = "Callouts sit side by side in a horizontal row."
+  point = [0.5, 0.6]
+
+  [[sections.notes]]
+  title = "Outer edge"
+  text = "Each leader still targets its original image coordinate."
+  point = [0.72, 0.47]
+
+[[sections]]
+type = "details"
+id = "bottom-staggered-details"
+title = "A staggered bottom row"
+eyebrow = "note_side = bottom · note_layout = staggered"
+image = "project-01.png"
+image_alt = "Rounded enclosure with staggered notes below the image"
+note_side = "bottom"
+note_layout = "staggered"
+
+  [[sections.notes]]
+  title = "First feature"
+  text = "The first note stays close to the image."
+  point = [0.35, 0.45]
+
+  [[sections.notes]]
+  title = "Second feature"
+  text = "Every other note steps farther away for a looser rhythm."
+  point = [0.5, 0.6]
+
+  [[sections.notes]]
+  title = "Third feature"
+  text = "More notes can wrap into additional rows."
+  point = [0.72, 0.47]
+
+[[sections]]
+type = "details"
+id = "top-horizontal-details"
+title = "Notes along the top"
+eyebrow = "note_side = top · note_layout = horizontal"
+image = "project-01.png"
+image_alt = "Rounded enclosure with two notes above the image"
+note_side = "top"
+note_layout = "horizontal"
+
+  [[sections.notes]]
+  title = "Upper shell"
+  text = "Top notes introduce the features before the drawing."
+  point = [0.4, 0.35]
+
+  [[sections.notes]]
+  title = "Right-hand edge"
+  text = "Leaders leave the bottom of the note without crossing its copy."
+  point = [0.72, 0.47]
+
+[[sections]]
+type = "details"
+id = "top-staggered-details"
+title = "A staggered top row"
+eyebrow = "note_side = top · note_layout = staggered"
+image = "project-01.png"
+image_alt = "Rounded enclosure with staggered notes above the image"
+note_side = "top"
+note_layout = "staggered"
+
+  [[sections.notes]]
+  title = "First feature"
+  text = "Notes align toward the image."
+  point = [0.35, 0.45]
+
+  [[sections.notes]]
+  title = "Second feature"
+  text = "The alternating offset mirrors the bottom-row treatment."
+  point = [0.5, 0.6]
+
+  [[sections.notes]]
+  title = "Third feature"
+  text = "The selected edge remains unchanged on mobile."
+  point = [0.72, 0.47]
+
+[[sections]]
+type = "details"
+id = "both-horizontal-details"
+title = "Notes above and below"
+eyebrow = "note_side = both · note_layout = horizontal"
+image = "project-01.png"
+image_alt = "Rounded enclosure with notes above and below the image"
+note_side = "both"
+note_layout = "horizontal"
+
+  [[sections.notes]]
+  title = "Upper left"
+  text = "Upper-half points automatically use the top edge."
+  point = [0.35, 0.3]
+
+  [[sections.notes]]
+  title = "Upper right"
+  text = "Each edge gets its own horizontal row."
+  point = [0.65, 0.35]
+
+  [[sections.notes]]
+  title = "Lower left"
+  text = "Lower-half points automatically use the bottom edge."
+  point = [0.4, 0.65]
+
+  [[sections.notes]]
+  title = "Lower right"
+  text = "Use side = top or bottom to override the automatic choice."
+  point = [0.7, 0.7]
+  side = "bottom"
+
+[[sections]]
+type = "details"
+id = "both-staggered-details"
+title = "Staggered on both edges"
+eyebrow = "note_side = both · note_layout = staggered"
+image = "project-01.png"
+image_alt = "Rounded enclosure with staggered top and bottom notes"
+note_side = "both"
+note_layout = "staggered"
+
+  [[sections.notes]]
+  title = "Upper left"
+  text = "Both rows share the same arrangement setting."
+  point = [0.35, 0.3]
+
+  [[sections.notes]]
+  title = "Upper right"
+  text = "Top notes stagger upward, away from the image."
+  point = [0.65, 0.35]
+
+  [[sections.notes]]
+  title = "Lower left"
+  text = "The image stays centered between its callouts."
+  point = [0.4, 0.65]
+
+  [[sections.notes]]
+  title = "Lower right"
+  text = "Bottom notes stagger downward, away from the image."
+  point = [0.7, 0.7]
+
+[[sections]]
+type = "image"
+id = "large-image"
+title = "Optional: a full-width image"
+eyebrow = "image style = full"
+style = "full"
+src = "project-01.png"
+alt = "Rounded enclosure CAD drawing shown as a full-width image"
+caption = "Use inset, wide, or full to control the image's footprint."
+fit = "contain"
+
+[[sections]]
+type = "columns"
+id = "columns-example"
+title = "Optional: a soft surface"
+eyebrow = "columns + soft theme"
+columns = 3
+theme = "soft"
+
+  [[sections.items]]
+  title = "01"
+  text = "Keep each item short and let the headings carry the rhythm."
+
+  [[sections.items]]
+  title = "02"
+  text = "Use columns for results, phases, facts, or lessons learned."
+
+  [[sections.items]]
+  title = "03"
+  text = "The grid collapses to a readable stack on smaller screens."
+
+[[sections]]
+type = "quote"
+id = "quote-example"
+eyebrow = "Optional · dark theme + generous spacing"
+spacing = "generous"
+theme = "dark"
+quote = "A project page can be as structured—or as loose—as the story needs."
+attribution = "The section system"

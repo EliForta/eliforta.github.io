@@ -1,0 +1,122 @@
+# Copy this file to content/projects/my-project.toml, then run `python3 build.py`.
+# The filename itself is not significant; `slug` controls the page URL.
+
+slug = "my-project"
+order = 3
+title = "My project"
+subtitle = "A short, descriptive subtitle"
+card_label = "Product design"
+description = "A one-sentence description for search engines and link previews."
+thumbnail = "assets/images/my-project/thumbnail.jpg"
+thumbnail_alt = "A useful visual description of the project thumbnail"
+thumbnail_fit = "cover"           # contain | cover
+thumbnail_scale = 1.0
+thumbnail_position = "50% 50%"
+thumbnail_background = "#f3f4f0"
+year = "2026"
+role = "Design and prototyping"
+# eyebrow = "Case study"
+# draft = true                     # Draft projects are not built or listed.
+# featured = false                 # Builds the page but hides its home card.
+
+[[sections]]
+type = "text"
+title = "Overview"
+width = "reading"                 # reading | wide | full
+body = """
+Start with a clear overview. Blank lines create new paragraphs.
+
+The text is escaped safely, so it can contain normal punctuation and symbols.
+"""
+
+[[sections]]
+type = "split"
+title = "From idea to object"
+eyebrow = "Development"
+body = "Put text beside one image, a vertical stack, or a compact grid."
+image_side = "right"              # left | right
+media_layout = "stack"            # single | stack | grid
+theme = "soft"                    # paper | soft | dark
+spacing = "generous"              # compact | normal | generous
+
+  [[sections.images]]
+  src = "assets/images/my-project/sketch.jpg"
+  alt = "Early pencil sketch"
+  caption = "The initial direction"
+  ratio = "landscape"             # natural | landscape | portrait | square | wide
+
+  [[sections.images]]
+  src = "assets/images/my-project/prototype.jpg"
+  alt = "First physical prototype"
+  caption = "Testing the proportions"
+
+  # Silent MP4s use the same presentation fields as images. They autoplay,
+  # loop, stay muted and inline, and never show playback controls.
+  [[sections.images]]
+  src = "assets/images/my-project/motion.mp4"
+  alt = "The prototype opening and closing"
+  ratio = "wide"
+  fit = "cover"
+  position = "50% 50%"
+  scale = 1.0
+  lightbox = true
+  dialog_scale = 1.0
+
+[[sections]]
+type = "gallery"
+title = "Gallery"
+layout = "grid"                    # grid | collage | filmstrip
+columns = 3                         # Used by grid (2–4).
+
+  [[sections.images]]
+  src = "assets/images/my-project/front.jpg"
+  alt = "Front view of the finished object"
+  caption = "Front"
+
+  [[sections.images]]
+  src = "assets/images/my-project/detail.jpg"
+  alt = "Close view of a material transition"
+  caption = "Material detail"
+  ratio = "portrait"
+
+[[sections]]
+type = "details"
+title = "Details"
+image = "assets/images/my-project/overview.jpg"
+image_alt = "Overview with two design features called out"
+note_side = "left"                # left | right | top | bottom | both
+note_layout = "horizontal"        # horizontal | staggered; top/bottom/both only
+note_columns = 3                  # 1–4; maximum notes per row on each edge
+align = "right"                   # left | right; positions the complete view
+
+  [[sections.notes]]
+  title = "Feature name"
+  text = "Explain why this detail matters."
+  point = [0.32, 0.58]             # x/y position from 0 to 1
+  # side = "bottom"               # optional top | bottom override when note_side = "both"
+
+[[sections]]
+type = "image"
+title = "The final object"
+src = "assets/images/my-project/hero.jpg"
+alt = "The finished object in use"
+caption = "Final prototype"
+style = "wide"                    # inset | wide | full
+
+[[sections]]
+type = "columns"
+title = "What I learned"
+columns = 3
+
+  [[sections.items]]
+  title = "01"
+  text = "A compact takeaway or result."
+
+  [[sections.items]]
+  title = "02"
+  text = "Another observation."
+
+[[sections]]
+type = "quote"
+quote = "A short line that deserves space."
+attribution = "Name or context"

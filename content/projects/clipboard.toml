@@ -1,0 +1,171 @@
+slug = "clipboard"
+order = 2
+title = "Clipboard Dispenser"
+card_label = "Accessible design"
+description = "An accessible clipboard dispenser developed through three prototypes, combining a servo mechanism, Arduino controls, CNC-cut panels, and adaptable printed parts."
+thumbnail = "assets/images/clipboard/clipboard.png"
+thumbnail_alt = "CAD drawing of a clipboard dispenser with an open hopper and dispensing tray"
+thumbnail_fit = "contain"
+thumbnail_scale = 0.95
+year = "2025"
+role = "Team Lead"
+# tags = ["Accessible design", "Arduino", "CNC routing", "3D printing"]
+
+[[sections]]
+type = "split"
+id = "overview"
+title = "Overview"
+image_side = "right"
+media_layout = "single"
+body = """
+Our team designed an automatic clipboard dispenser to make a volunteer assembly station more accessible to people with disabilities. A button triggers a servo-driven mechanism, controlled by an Arduino, to dispense one clipboard at a time.
+
+As team lead, I helped take the device through three prototypes and incorporated stakeholder feedback. I also coordinated with the team developing the clipboard-grabbing device so the two systems could work with their custom clipboards.
+"""
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard2.jpg"
+  alt = "Completed clipboard dispenser with a large external push button"
+  caption = "The finished dispenser and its button."
+  fit = "contain"
+  surface = "elevated"
+
+
+[[sections]]
+type = "columns"
+id = "outcomes"
+title = "Project outcomes"
+columns = 3
+spacing = "compact"
+# Figures supplied in the resume. Retain measurement methods with project records.
+  [[sections.items]]
+  title = "15 seconds"
+  text = "Average station time with the dispenser."
+
+  [[sections.items]]
+  title = "+50%"
+  text = "Reported increase in user engagement."
+
+  [[sections.items]]
+  title = "3 prototypes"
+  text = "Design revisions informed by stakeholder feedback."
+
+[[sections]]
+type = "gallery"
+id = "fabrication"
+title = "Fabrication"
+layout = "grid"
+columns = 3
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard8.jpg"
+  alt = "Dispenser panels being cut on a CNC router"
+  caption = "Panels cut on my CNC router."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard9.jpg"
+  alt = "Glued wooden dispenser enclosure before electronics installation"
+  caption = "Glued box."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard10.jpg"
+  alt = "Dispenser enclosure with wiring exposed during assembly"
+  caption = "Wiring checks."
+  fit = "contain"
+
+[[sections]]
+type = "details"
+id = "details"
+title = "Design details"
+note_side = "right"
+spacing = "compact"
+image = "assets/images/clipboard/clipboard7.png"
+image_alt = "Annotated CAD view of the dispenser showing spacers, cable routing, and the front opening"
+
+  [[sections.notes]]
+  title = "3D printed spacers"
+  text = "Multi-part spacers let me adjust the fit without reprinting the entire spacer assembly."
+  point = [0.6, 0.2]
+
+  [[sections.notes]]
+  title = "Internal wiring channels"
+  text = "Channels in the spacers protect and conceal the LED wiring."
+  point = [0.6, 0.605]
+
+  [[sections.notes]]
+  title = "Adaptable design"
+  text = "An oversized opening accepts a replaceable printed spacer for different clipboards."
+  point = [0.43, 0.85]
+
+[[sections]]
+type = "details"
+id = "connections"
+width = "reading"
+align = "right"
+spacing = "compact"
+image = "assets/images/clipboard/clipboard6.png"
+image_alt = "Rear CAD detail of the dispenser's labeled electrical connections"
+
+  [[sections.notes]]
+  title = "Error-proofed connectors"
+  text = "Printed icons and opposite plug arrangements help prevent the battery and button connections from being mixed up."
+  point = [0.52, 0.56]
+
+[[sections]]
+type = "gallery"
+id = "operation"
+title = "The mechanism in motion"
+layout = "grid"
+columns = 2
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard1.mp4"
+  alt = "Animation of the dispenser's servo mechanism"
+  caption = "Servo actuation drives the dispensing mechanism."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard.mp4"
+  alt = "Animation of the assembled dispenser operating"
+  caption = "The assembled device during a dispensing cycle."
+  fit = "contain"
+
+[[sections]]
+type = "gallery"
+id = "finished-details"
+title = "Gallery"
+layout = "grid"
+columns = 2
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard1.png"
+  alt = "Close-up of the battery mounted on the dispenser"
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard3.png"
+  alt = "Front view of the dispenser showing its outlet and illuminated enclosure"
+  caption = "The clipboard outlet and front spacers."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard4.png"
+  alt = "View into the dispenser hopper with internal lighting visible"
+  caption = "Inside the hopper."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/clipboard/clipboard5.png"
+  alt = "Rear view of the dispenser's mounted electrical components"
+  caption = "Rear component arrangement."
+  fit = "contain"
+
+#  [[sections.images]]
+#  src = "assets/images/clipboard/clipboard11.jpg"
+#  alt = "swappable front spacers"
+#  caption = "swappable front spacers."

@@ -1,0 +1,121 @@
+slug = "slider"
+order = 4
+title = "Fidget Slider"
+card_label = "Independent product"
+description = "A customizable magnetic fidget slider designed for 3D printing, with embedded magnets, interchangeable sides, 43 Etsy orders, and 20 five-star reviews."
+thumbnail = "assets/images/slider/slider.png"
+thumbnail_fit = "contain"
+thumbnail_scale = 0.95
+thumbnail_background = "#f3f4f0"
+year = "2023"
+# role = "Independent designer and seller"
+# tags = ["Product design", "3D printing", "Snap fits", "Prototyping"]
+
+[[sections]]
+type = "text"
+id = "overview"
+title = "Overview"
+width = "reading"
+body = "I designed a magnetic fidget slider with interchangeable sides, then made and sold it on Etsy. The goal was a compact, satisfying object that leveraged the quirks of 3D printing. Magnets are embedded during the print, the surfaces pick up the build plate's texture, and the sides snap into place."
+
+[[sections]]
+type = "columns"
+id = "outcomes"
+columns = 3
+spacing = "compact"
+
+  [[sections.items]]
+  title = "43 orders"
+  text = "Made and fulfilled through Etsy."
+
+  [[sections.items]]
+  title = "20 five-star reviews"
+  text = "Customer feedback on the finished product."
+
+  [[sections.items]]
+  title = "4 magnet suppliers"
+  text = "Compared during development for tactile feedback."
+
+[[sections]]
+type = "split"
+id = "development"
+title = "Development"
+image_side = "right"
+media_layout = "grid"
+body = "The original idea was a more elongated shape, but I was not happy with how it felt. I started over, shifting the design to a more compact, three-tier arrangement. During development I experimented with a variety of magnet sizes. When I found a size I liked, I tried 4 different sources to find the one that provided the best tactile feel."
+
+  [[sections.images]]
+  src = "assets/images/slider/slider5.png"
+  alt = "Early magnetic fidget slider with an elongated body"
+  caption = "Early elongated design."
+  ratio = "landscape"
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/slider/slider6.png"
+  alt = "Revised magnetic fidget slider with a compact body"
+  caption = "Revised compact design."
+  ratio = "landscape"
+  fit = "contain"
+
+[[sections]]
+type = "details"
+id = "details"
+title = "Details"
+image = "assets/images/slider/slider.png"
+image_alt = "Exploded slider drawing with notes on its textured sides, embedded magnets, and snap fits"
+
+  [[sections.notes]]
+  title = "Texture from the build plate"
+  text = "Printing against a textured plate creates the side finish directly."
+  point = [0.43, 0.24]
+
+  [[sections.notes]]
+  title = "Magnets without glue"
+  text = "Magnets are inserted during printing and enclosed as the print continues."
+  point = [0.3, 0.44]
+
+  [[sections.notes]]
+  title = "Sides that swap"
+  text = "Snap-fit connectors hold the side panels and let them be exchanged."
+  point = [0.3, 0.74]
+
+[[sections]]
+type = "text"
+id = "process"
+title = "Preventing waste"
+width = "reading"
+spacing = "compact"
+body = "Embedding magnets removes the gluing step, but it also puts reusable components inside a sealed part. I included small weak points so a tool can easily push the magnets out if a print wasn't up to standard."
+
+[[sections]]
+type = "gallery"
+id = "gallery"
+title = "Gallery"
+layout = "collage"
+columns = 2
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/slider/slider1.png"
+  alt = "Gray and white fidget slider in an open position"
+  caption = "Open position."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/slider/slider2.png"
+  alt = "Gray and white fidget slider in its closed position"
+  caption = "Closed, with the textured side visible."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/slider/slider7.mp4"
+  alt = "Hand operating the red and white fidget slider"
+  caption = "The finished slider in hand."
+  fit = "contain"
+
+#  [[sections.images]]
+#  src = "assets/images/slider/slider3.png"
+#  alt = "Red fidget slider with a contrasting white side panel"
+#  caption = "A different color combination."
+#  fit = "contain"

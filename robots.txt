@@ -1,0 +1,23 @@
+# HTML remains crawlable so search engines can discover and honor the noindex
+# meta directive on every page. A blanket Disallow here could leave bare URLs
+# indexed because compliant search crawlers would never see that directive.
+User-agent: *
+Allow: /
+
+# Allow OpenAI's search crawler to read the page-level noindex directive.
+User-agent: OAI-SearchBot
+Allow: /
+
+# Keep portfolio media out of Google Images.
+User-agent: Googlebot-Image
+Disallow: /
+
+# Opt out of known AI training, retrieval, and dataset crawlers.
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+Disallow: /

@@ -1,0 +1,12 @@
+.DS_Store
+.sites-runtime/
+.venv/
+.openai/
+__pycache__/
+tmp/
+
+/index.html
+/projects/*/index.html
+/dist/
+/_site/
+/output/

@@ -1,0 +1,160 @@
+slug = "dynamo"
+order = 3
+title = "Dynamo Cosplay Prop"
+card_label = ""
+description = "Dynamo's prop from Deadlock, recreated from scratch in CAD with room for lighting and electronics, hidden fasteners, and reinforcements to make the in-game design work as a real object."
+thumbnail = "assets/images/dynamo/dynamo.png"
+thumbnail_alt = "CAD drawing of the assembled Dynamo cosplay prop"
+thumbnail_fit = "contain"
+thumbnail_scale = 0.95
+year = "2026"
+
+[[sections]]
+type = "text-image"
+id = "overview"
+title = "Overview"
+image = "assets/images/dynamo/dynamo6.jpg"
+image_alt = "Finished Dynamo cosplay prop with blue housing, a brown grip, and exposed colored wires"
+body = """
+A friend asked me for help with their cosplay of Dynamo from the game Deadlock. A common way to turn an in-game model into a prop is to print it as one piece or glue together smaller sections, then sand, prime, and paint it.
+
+For this project, though, I saw an opportunity for an interesting challenge.
+
+
+"""
+
+[[sections]]
+type = "text"
+width = "full"
+body = """
+I wanted to recreate the model from scratch in CAD and determine how it could be broken down into individual parts and assembled as a real object. Every part was separated by color, and then I figured out how each piece would connect using only bolts and printed connectors, while planning the internal assembly around the electronics and wiring. The end result far exceeded my goals while keeping the exterior design, scale, and proportions identical to the original model.
+"""
+
+[[sections]]
+type = "gallery"
+id = "model-comparison"
+title = "Recreating the model"
+layout = "grid"
+columns = 2
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo7.jpg"
+  alt = "Dynamo's original in-game prop model from Deadlock"
+  caption = "The in-game model"
+  surface = "elevated"
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo8.png"
+  alt = "Recreated CAD model matching the shape and colors of the in-game prop"
+  caption = "My recreated model in CAD"
+  fit = "contain"
+
+[[sections]]
+type = "gallery"
+layout = "grid"
+columns = 3
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo12.jpg"
+  caption = "Testing the diffuser"
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo13.jpg"
+  caption = "Internal wiring"
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo11.jpg"
+  caption = "The wooden grip is actually stained wood PLA"
+  fit = "contain"
+
+# [[sections]]
+# type = "text"
+# id = "making-room"
+# title = "Fitting everything inside"
+# width = "full"
+# body = "I wanted to keep the model to scale while fitting LED lights, control boards, brightness controllers, and a battery inside. The outside shape was already decided, so the challenge was finding room for everything within it."
+
+[[sections]]
+type = "detail"
+title = "Fitting everything inside"
+id = "cross-section"
+spacing = "compact"
+style = "wide"
+image = "assets/images/dynamo/dynamo2.png"
+fit = "contain"
+note_side = "both"
+
+  [[sections.notes]]
+  title = "The barrel"
+  text = "The clear barrel was achieved with a resin 3D print. Because the components in the barrel would be impossible to fit through either end, the barrel is actually two halves joined at a hidden seam."
+  point = [0.43, 0.13]
+  side = "top"
+
+  [[sections.notes]]
+  title = "Brightness control"
+  text = "A potentiometer for brightness control is hidden in pre-existing detail in the design."
+  point = [0.73, 0.27]
+  side = "top"
+
+  [[sections.notes]]
+  title = "Electronics compartment"
+  text = "This 'chamber' in the original design was used to house the electronics. It contains a brightness controller, a power distribution PCB, a battery, and a voltage converter. The internal volume of this chamber is only ~2 in³, so it was a tight fit."
+  point = [0.67, 0.27]
+  side = "bottom"
+
+    [[sections.notes]]
+  title = "Hidden bolts"
+  text = "Most of the fake bolts actually obscure real bolts and utilize printed threads to attach securely."
+  point = [0.558, 0.67]
+  side = "bottom"
+
+
+    [[sections.notes]]
+  title = "Handle reinforcement"
+  text = "This 'core' is a critical reinforcement. Without it, the layers in the printed handle would be parallel to the force. The core is printed horizontally, and it connects to the rest of the body via two bolts and two metal rods."
+  point = [0.89, 0.57]
+  side = "bottom"
+
+
+[[sections]]
+type = "text"
+id = "assembly"
+title = "Putting it together"
+width = "reading"
+body = "The final design was made up of over 100 printed parts."
+
+[[sections]]
+type = "image"
+spacing = "compact"
+style = "wide"
+src = "assets/images/dynamo/dynamo1.png"
+alt = "Exploded CAD view showing the prop's separate parts and assembly hardware"
+caption = "Exploded view of the final design"
+fit = "contain"
+
+[[sections]]
+type = "gallery"
+id = "finished-prop"
+title = "More photos of the finished prop"
+layout = "collage"
+columns = 2
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo.avif"
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo4.jpg"
+  alt = "Finished prop viewed from behind the grip"
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo5.jpg"
+  alt = "Close-up of the illuminated yellow barrel and its supporting frame"
+
+  [[sections.images]]
+  src = "assets/images/dynamo/dynamo3.jpg"
+  alt = "Finished illuminated prop viewed from the grip side"

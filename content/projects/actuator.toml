@@ -1,0 +1,204 @@
+slug = "actuator"
+order = 1
+title = "Soft Robotic Actuators"
+card_label = "Soft robotics research"
+description = "Half-round fiber-reinforced silicone actuators: parametric molds, a modular compression seal, and development toward repeatable testing for battery handling."
+thumbnail = "assets/images/actuator/actuator.png"
+thumbnail_alt = "CAD drawing of two soft actuators attached to an angled modular fixture"
+thumbnail_fit = "contain"
+thumbnail_scale = 0.95
+year = "2026"
+role = "Undergraduate Research Assistant"
+# tags = ["Parametric CAD", "Silicone molding", "Fixture design", "Pneumatics"]
+
+[[sections]]
+type = "text"
+id = "overview"
+title = "Overview"
+width = "reading"
+body = """
+For the Autonomous Disassembly and Sorting of Batteries research project, I am working on half-round fiber-reinforced silicone actuators for an end effector. My work includes fabrication, mold design, mounting, and preparation for controlled testing.
+
+The challenge has been making the hardware consistent enough to compare designs. Each round of prototyping exposed the next problem: difficult molding, leakage under load, then delamination of the strain-limiting layer.
+"""
+
+[[sections]]
+type = "split"
+id = "parametric-molds"
+title = "Improving the molds"
+image_side = "right"
+media_layout = "grid"
+body = """
+The original molds depended on shared steel stock and external clamps, left both actuator ends open, and were prone to trapping bubbles. Limited hardware also restricted simultaneous casting.
+
+I rebuilt the molds in parametric CAD so actuator length, fiber angle, and wall thickness could be changed directly. The model generates part numbers and calculates the silicone needed for pouring by weight, making each variant easier to identify and prepare.
+"""
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuatorMold.png"
+  alt = "Assembled actuator mold with bolted end plates"
+  caption = "Redesigned mold assembly."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuatorMold1.png"
+  alt = "Exploded CAD view of the actuator mold and its internal pieces"
+  fit = "contain"
+
+[[sections]]
+type = "gallery"
+id = "fabrication"
+# title = "From mold to silicone"
+layout = "grid"
+columns = 2
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator12.jpg"
+  alt = "Two molded actuator bodies standing on a green base"
+  caption = "Freshly molded actuator sitting in half of the mold"
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator1.jpg"
+  caption = "Actuator after reinforcing fibers have been added."
+  fit = "contain"
+
+[[sections]]
+type = "split"
+id = "first-mount"
+title = "Version 1"
+image_side = "right"
+media_layout = "stack"
+body = "My first mount used barbed fittings. When the pressurized actuator met resistance, its flat underside pulled away from the fitting and released air. The connection needed to hold the half-round profile closed under load. 
+
+Despite the leaking issue, the actuator showed promising performance in early testing, so I continued to work on the design by redesigning the actuator mounts."
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator3.png"
+  alt = "First actuator mount with two angled barbed fittings"
+  caption = "The original barbed connection."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator.mp4"
+  alt = "Video of testing with the first actuator mount"
+  caption = "Despite the leaking, early testing showed promising results."
+
+[[sections]]
+type = "split"
+id = "compression-seal"
+title = "Version 2"
+width = "full"
+body = "I modified the molds to add a flange to the actuator end. Then I designed a new mount that clamps the flange between two parts. This creates a self-contained actuator module: the seal stays assembled when the module moves to a different fixture. The section view shows how the flange is held in place."
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator2.jpg"
+  scale=0.5
+  caption = "New actuator with an added flange"
+
+[[sections]]
+type = "gallery"
+id = "compression-seal-views"
+layout = "grid"
+columns = 3
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator4.png"
+  alt = "Assembled actuator module with a compression mount at its upper end"
+  caption = "Self-contained actuator module."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator5.png"
+  alt = "Exploded actuator module showing the compression plate and fasteners"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator6.png"
+  alt = "Cross-section through the actuator showing its flange captured in the mount"
+  caption = "Section through the captured flange."
+  fit = "contain"
+
+[[sections]]
+type = "split"
+id = "sealing-result"
+title = ""
+image_side = "right"
+media_layout = "grid"
+# 30 psi is the reported prototype observation, not a rated operating pressure.
+body = "After several iterations, the mount operated without observed leakage at 30 psi. That exposed a different failure: the strain-limiting layer began to separate, causing twisting and inconsistent bending across repeated runs. Fixing the seal made it possible to focus on the actuator material itself."
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator7.jpg"
+  alt = "Fabricated silicone actuator held in an orange compression mount"
+  caption = "Self-contained actuator module."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator1.mp4"
+  alt = "Video of the revised actuator and mounting system during testing"
+  caption = "Revised mount test."
+
+[[sections]]
+type = "text"
+id = "modular-fixture"
+title = "A modular system"
+width = "reading"
+body = "The sealed modules attach to a separate angled fixture. To compare mounting angles, I can change that fixture without rebuilding the actuator connection. The CAD assembly and physical setup show how the same module fits into the larger test system."
+
+[[sections]]
+type = "gallery"
+id = "modular-fixture-views"
+layout = "grid"
+columns = 3
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator11.png"
+  alt = "Front CAD view of a two-actuator angled fixture"
+  caption = "The self-contained modules slot into place."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator13.png"
+  alt = "Isometric CAD view of two actuators attached to the fixture"
+  caption = "The seals remain part of the modules."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator10.jpg"
+  alt = "Two silicone actuators mounted on the physical test gantry"
+  caption = "Fabricated assembly on the test gantry."
+  fit = "contain"
+
+[[sections]]
+type = "gallery"
+id = "three-finger-concept"
+title = "A new fixture is all that's needed to test new setups"
+layout = "grid"
+columns = 2
+spacing = "compact"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator8.png"
+  alt = "Front CAD view of a three-actuator fixture concept"
+  caption = "Three-finger configuration: a design exploration."
+  fit = "contain"
+
+  [[sections.images]]
+  src = "assets/images/actuator/actuator9.png"
+  alt = "Isometric CAD view of the three-actuator fixture concept"
+  fit = "contain"
+
+[[sections]]
+type = "text"
+id = "next-tests"
+title = "Current work"
+width = "reading"
+# Keep this in-progress wording until automation and material tests are complete.
+body = """
+I identified nonwoven polypropylene and silkscreen fabric as candidate strain-limiting layers. The next step is to compare their behavior with a controlled test procedure.
+
+I am currently developing a Python-controlled setup to coordinate filling, exhaust, and gantry motion. The aim is to reduce variation from manual operation before comparing materials and actuator designs. 
+"""
