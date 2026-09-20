@@ -2,14 +2,15 @@ slug = "clipboard"
 order = 2
 title = "Clipboard Dispenser"
 card_label = "Accessible design"
-description = "An accessible clipboard dispenser developed through three prototypes, combining a servo mechanism, Arduino controls, CNC-cut panels, and adaptable printed parts."
+description = "An accessible automatic clipboard dispenser developed for Connect Us, combining single-button operation, a servo-driven mechanism, sensory feedback, and adaptable components to increase independent participation."
 thumbnail = "assets/images/clipboard/clipboard.png"
-thumbnail_alt = "CAD drawing of a clipboard dispenser with an open hopper and dispensing tray"
+thumbnail_alt = "CAD drawing of the clipboard dispenser with an open hopper and dispensing tray"
 thumbnail_fit = "contain"
 thumbnail_scale = 0.95
 year = "2025"
 role = "Team Lead"
 # tags = ["Accessible design", "Arduino", "CNC routing", "3D printing"]
+
 
 [[sections]]
 type = "split"
@@ -18,15 +19,17 @@ title = "Overview"
 image_side = "right"
 media_layout = "single"
 body = """
-Our team designed an automatic clipboard dispenser to make a volunteer assembly station more accessible to people with disabilities. A button triggers a servo-driven mechanism, controlled by an Arduino, to dispense one clipboard at a time.
+Connect Us operates The Line, a 12-station activity where participants help assemble items for other charities. At Station 1, users originally retrieved a clipboard using a pole and magnet. The task required significant reach and strength, and many participants needed assistance to complete it.
 
-As team lead, I helped take the device through three prototypes and incorporated stakeholder feedback. I also coordinated with the team developing the clipboard-grabbing device so the two systems could work with their custom clipboards.
+Our team redesigned the station around an automatic clipboard dispenser. A single button press activates an Arduino-controlled servo mechanism that dispenses one clipboard at a time, reducing the physical demands of the original task.
+
+As team lead, I helped guide the design through multiple prototype iterations, incorporated stakeholder feedback, and coordinated compatibility with another team's clipboard design. The final prototype combined automatic dispensing, a movable activation button, sensory feedback, and adaptable printed components to support a wider range of users.
 """
 
   [[sections.images]]
   src = "assets/images/clipboard/clipboard2.jpg"
   alt = "Completed clipboard dispenser with a large external push button"
-  caption = "The finished dispenser and its button."
+  caption = "The final dispenser and movable activation button."
   fit = "contain"
   surface = "elevated"
 
@@ -34,21 +37,42 @@ As team lead, I helped take the device through three prototypes and incorporated
 [[sections]]
 type = "columns"
 id = "outcomes"
-title = "Project outcomes"
+title = "Validated outcomes"
 columns = 3
 spacing = "compact"
-# Figures supplied in the resume. Retain measurement methods with project records.
-  [[sections.items]]
-  title = "15 seconds"
-  text = "Average station time with the dispenser."
 
   [[sections.items]]
-  title = "+50%"
-  text = "Reported increase in user engagement."
+  title = "4.3 seconds"
+  text = "Average customer operation time during validation testing."
 
   [[sections.items]]
-  title = "3 prototypes"
-  text = "Design revisions informed by stakeholder feedback."
+  title = "≥50% independent"
+  text = "Users could independently complete at least half of the station, compared with a previous worst-case level of about 17%."
+
+  [[sections.items]]
+  title = "45+ cycles"
+  text = "Consecutive clipboard dispensing cycles completed without a jam."
+
+
+[[sections]]
+type = "columns"
+id = "accessibility"
+title = "Designing for accessibility"
+columns = 3
+spacing = "compact"
+
+  [[sections.items]]
+  title = "Single-button operation"
+  text = "A single press starts the dispensing cycle, eliminating the need to reach for, lift, or manipulate the original magnetic pole."
+
+  [[sections.items]]
+  title = "Flexible input placement"
+  text = "The activation button connects through a long cable so it can be positioned where it is easiest for an individual user to reach."
+
+  [[sections.items]]
+  title = "Sensory feedback"
+  text = "Lighting, movement, sound, and other feedback make the station more interactive without relying on flashing lights or high-pitched audio."
+
 
 [[sections]]
 type = "gallery"
@@ -60,21 +84,22 @@ spacing = "compact"
 
   [[sections.images]]
   src = "assets/images/clipboard/clipboard8.jpg"
-  alt = "Dispenser panels being cut on a CNC router"
-  caption = "Panels cut on my CNC router."
+  alt = "Birch plywood dispenser panels being cut on a CNC router"
+  caption = "Birch plywood enclosure panels cut on my CNC router."
   fit = "contain"
 
   [[sections.images]]
   src = "assets/images/clipboard/clipboard9.jpg"
   alt = "Glued wooden dispenser enclosure before electronics installation"
-  caption = "Glued box."
+  caption = "The plywood enclosure during assembly."
   fit = "contain"
 
   [[sections.images]]
   src = "assets/images/clipboard/clipboard10.jpg"
   alt = "Dispenser enclosure with wiring exposed during assembly"
-  caption = "Wiring checks."
+  caption = "Electronics and wiring checks before final assembly."
   fit = "contain"
+
 
 [[sections]]
 type = "details"
@@ -86,23 +111,25 @@ image = "assets/images/clipboard/clipboard7.png"
 image_alt = "Annotated CAD view of the dispenser showing spacers, cable routing, and the front opening"
 
   [[sections.notes]]
-  title = "3D printed spacers"
-  text = "Multi-part spacers let me adjust the fit without reprinting the entire spacer assembly."
+  title = "Replaceable printed spacers"
+  text = "Replaceable spacer components allow the dispenser to accommodate different clipboard designs without rebuilding the enclosure."
   point = [0.6, 0.2]
 
   [[sections.notes]]
   title = "Internal wiring channels"
-  text = "Channels in the spacers protect and conceal the LED wiring."
+  text = "Channels built into the printed spacers route and conceal wiring while helping protect the recessed LED connections."
   point = [0.6, 0.605]
 
   [[sections.notes]]
-  title = "Adaptable design"
-  text = "An oversized opening accepts a replaceable printed spacer for different clipboards."
+  title = "Adaptable outlet"
+  text = "The oversized front opening accepts interchangeable printed components, making the dispensing geometry easier to adjust for different clipboards."
   point = [0.43, 0.85]
+
 
 [[sections]]
 type = "details"
 id = "connections"
+title = "Setup and connections"
 width = "reading"
 align = "right"
 spacing = "compact"
@@ -110,9 +137,50 @@ image = "assets/images/clipboard/clipboard6.png"
 image_alt = "Rear CAD detail of the dispenser's labeled electrical connections"
 
   [[sections.notes]]
-  title = "Error-proofed connectors"
-  text = "Printed icons and opposite plug arrangements help prevent the battery and button connections from being mixed up."
+  title = "Error-resistant connections"
+  text = "Clearly marked connectors and distinct plug arrangements help prevent the battery and activation-button connections from being mixed up during setup."
   point = [0.52, 0.56]
+
+
+[[sections]]
+type = "columns"
+id = "validation"
+title = "Design validation"
+columns = 3
+spacing = "compact"
+
+  [[sections.items]]
+  title = "<50 seconds"
+  text = "Final setup time, well below the four-minute design requirement."
+
+  [[sections.items]]
+  title = "22 × 10 inches"
+  text = "Final footprint, fitting comfortably within the available 29 × 34-inch station area."
+
+  [[sections.items]]
+  title = "$149.81"
+  text = "Purchased-material total for the prototype, remaining below the $150 project limit."
+
+
+[[sections]]
+type = "columns"
+id = "final-features"
+title = "Final prototype"
+columns = 3
+spacing = "compact"
+
+  [[sections.items]]
+  title = "Rechargeable power"
+  text = "A rechargeable USB-C battery allows the station to operate without depending on access to a nearby electrical outlet."
+
+  [[sections.items]]
+  title = "Visible and audible feedback"
+  text = "Recessed lighting and bead-equipped ramp wheels provide sensory feedback as a clipboard moves through the dispenser."
+
+  [[sections.items]]
+  title = "Designed for setup"
+  text = "A removable ramp, concealed wiring, labeled electrical connections, and silicone feet make the device easier to transport, assemble, and operate."
+
 
 [[sections]]
 type = "gallery"
@@ -124,15 +192,16 @@ spacing = "compact"
 
   [[sections.images]]
   src = "assets/images/clipboard/clipboard1.mp4"
-  alt = "Animation of the dispenser's servo mechanism"
-  caption = "Servo actuation drives the dispensing mechanism."
+  alt = "Animation of the dispenser's servo-driven mechanism"
+  caption = "Servo actuation advances and releases a single clipboard."
   fit = "contain"
 
   [[sections.images]]
   src = "assets/images/clipboard/clipboard.mp4"
-  alt = "Animation of the assembled dispenser operating"
-  caption = "The assembled device during a dispensing cycle."
+  alt = "Animation of the assembled clipboard dispenser operating"
+  caption = "The assembled dispenser completing a dispensing cycle."
   fit = "contain"
+
 
 [[sections]]
 type = "gallery"
@@ -167,5 +236,5 @@ spacing = "compact"
 
 #  [[sections.images]]
 #  src = "assets/images/clipboard/clipboard11.jpg"
-#  alt = "swappable front spacers"
-#  caption = "swappable front spacers."
+#  alt = "Replaceable front spacers for adapting the dispenser to different clipboard designs"
+#  caption = "Interchangeable spacers allow the outlet geometry to be adjusted."
