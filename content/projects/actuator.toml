@@ -2,7 +2,7 @@ slug = "actuator"
 order = 1
 title = "Soft Robotic Actuators"
 card_label = "Soft robotics research"
-description = "Half-round fiber-reinforced silicone actuators: parametric molds, a modular compression seal, and development toward repeatable testing for battery handling."
+description = "Half-round fiber-reinforced silicone actuators: parametric molds, a modular compression seal, and a completed Python pressure and gantry control setup for planned battery-handling experiments."
 thumbnail = "assets/images/actuator/actuator.png"
 thumbnail_alt = "CAD drawing of two soft actuators attached to an angled modular fixture"
 thumbnail_fit = "contain"
@@ -17,9 +17,9 @@ id = "overview"
 title = "Overview"
 width = "reading"
 body = """
-For the Autonomous Disassembly and Sorting of Batteries research project, I am working on half-round fiber-reinforced silicone actuators for an end effector. My work includes fabrication, mold design, mounting, and preparation for controlled testing.
+For the Autonomous Disassembly and Sorting of Batteries research project, I am developing half-round fiber-reinforced silicone actuators for an end effector. My work spans fabrication, parametric mold design, modular mounting, and developing a Python controlled setup for pressure and gantry control.
 
-The challenge has been making the hardware consistent enough to compare designs. Each round of prototyping exposed the next problem: difficult molding, leakage under load, then delamination of the strain-limiting layer.
+The challenge has been making the hardware consistent enough to compare designs. Each round of prototyping exposed the next problem: difficult molding, leakage under load, then delamination of the strain-limiting layer. The next step is controlled experiments across battery sizes, actuator designs, and strain-limiting materials.
 """
 
 [[sections]]
@@ -196,9 +196,10 @@ type = "text"
 id = "next-tests"
 title = "Current work"
 width = "reading"
-# Keep this in-progress wording until automation and material tests are complete.
 body = """
-I identified nonwoven polypropylene and silkscreen fabric as candidate strain-limiting layers. The next step is to compare their behavior with a controlled test procedure.
+I finished a Python-controlled setup that replaces the manual filling and release valves and the gantry's up/down buttons. It controls pressure setpoints and programmable ramp profiles, pressure release and exhaust, gantry motion and position, and motion speed. Battery placement remains an operator task.
 
-I am currently developing a Python-controlled setup to coordinate filling, exhaust, and gantry motion. The aim is to reduce variation from manual operation before comparing materials and actuator designs. 
+The purpose is to reduce operator-dependent variation when testing different battery sizes and comparing actuator designs and materials. Programmed pressure and motion settings provide a basis for controlled comparisons.
+
+More soon...
 """
