@@ -238,6 +238,11 @@ Images and MP4s within `split` and `gallery` support:
 
 - `src`, optional `alt`, and optional `caption`.
 - `ratio`: `natural`, `landscape`, `portrait`, `square`, or `wide`.
+- `match_first = true`: on any image after the first, match the first image's
+  frame aspect ratio and size (including a reduced natural-image `scale`).
+  This overrides that image's `ratio` and layout size in the website and PDF;
+  `fit`, `position`, and zoom above `1` still control its contents. Sizes are
+  relative to the available column width.
 - `fit`: `cover` or `contain`.
 - `position`: a focal point such as `30% 50%`.
 - `scale`: fine zoom control, normally `1.0`.
@@ -246,6 +251,24 @@ Images and MP4s within `split` and `gallery` support:
 - `surface = "flat"` or `surface = "elevated"` to override the automatic image treatment.
 - `width` and `height` to reserve the correct image space while loading.
 - `placeholder = "Coming soon"` instead of `src` for an intentional empty slot.
+
+For example, keep a later image the same size as the first:
+
+```toml
+[[sections.images]]
+src = "assets/images/my-project/front.jpg"
+scale = 0.8
+
+[[sections.images]]
+src = "assets/images/my-project/detail.jpg"
+match_first = true
+fit = "contain"                 # Or cover to crop to the matching frame.
+```
+
+Matching uses the first image's chosen `ratio`, or its natural dimensions for
+local PNG, GIF, JPEG, and WebP images. For a natural SVG, MP4, remote image, or
+placeholder, set `width` and `height` on the first entry so its ratio is known.
+Images without `match_first` keep their individual settings.
 
 Opaque photos, GIFs, and videos automatically receive slightly rounded corners
 and a soft shadow. Transparent PNG/SVG artwork stays flat on the page so CAD
@@ -285,14 +308,32 @@ python3 build.py
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-The production build creates `output/pdf/ef-portfolio.pdf` directly from the TOML content. The PDF carries the site's handwritten EF headings and captions, signature, paper colors, gently tilted galleries, and dashed side annotations. Its opening page mirrors the homepage's project cards, with clickable project titles. Projects follow the same section order as the site, without inserting an extra thumbnail or SEO description.
+The production build creates `output/pdf/ef-portfolio.pdf` directly from the TOML content. The PDF carries the site's handwritten EF headings, body-font captions, signature, paper colors, gently tilted galleries, and dashed side annotations. Its opening page mirrors the homepage's project cards, with clickable project titles. Projects follow the same section order as the site, without inserting an extra thumbnail or SEO description.
 
-Text, links, annotation leaders, and page layout remain native PDF elements; this is not a browser print or a screenshot. `pdf_fonts.py` uses FontTools to convert the site's OpenType outlines to embeddable TrueType in memory, preserving the Unicode mappings and font metrics. Font failures stop the build instead of silently substituting a generic face. Body copy uses an embedded sans-serif font with slightly stronger contrast for print. Animated GIFs use a labeled first frame, and local videos use a labeled representative still extracted by FFmpeg.
+The cover's last-updated date is set automatically to the build date. PDF output is reproducible for the same date; rebuilding on a new day updates the cover date.
+
+To also generate a smaller copy for uploads, run:
+
+```sh
+python3 build.py --compressed-pdf
+```
+
+This writes `output/pdf/ef-portfolio-compressed.pdf` alongside the regular PDF.
+The additional copy limits embedded images to 900 pixels on their longest edge
+and uses JPEG quality 75 for opaque images. Transparent artwork keeps its alpha
+channel. Both copies have identical pagination, selectable text, embedded fonts,
+and clickable links; source images are unchanged.
+
+Text, links, annotation leaders, and page layout remain native PDF elements; this is not a browser print or a screenshot. `pdf_fonts.py` uses FontTools to convert the site's OpenType outlines to embeddable TrueType in memory, preserving the Unicode mappings and font metrics. Font failures stop the build instead of silently substituting a generic face. Body copy uses an embedded sans-serif font with slightly stronger contrast for print. Animated GIF, AVIF, WebP, and PNG images use a labeled first frame, and local videos use a labeled representative still extracted by FFmpeg.
 
 The PDF honors reading widths, section alignment and spacing, soft/dark themes, split layouts, natural-height collages, media aspect ratios, fit, focal point, and scale. Photos have rounded corners and soft shadows; transparent artwork stays flat. Captions align with the visible image edges, including images limited by page height. The paginator balances complete sections across each project's pages and keeps untitled galleries with their preceding explanation. Each project page has a plain current-project label in the header. Edit `build_pdf.py` for PDF composition and `pdf_fonts.py` for font embedding; the source content and artwork remain shared with the website.
 
-The prominent opening notice links to `https://eliforta.github.io` by default.
-To override the destination for a production build:
+Cover thumbnails and titles link to their project pages within the PDF.
+Images within each project, including annotated drawings, link to
+their original asset URLs on the live site. Clicking a GIF frame or video still
+opens the original animation or video; the motion labels and opening notice
+explain this. Links use `https://eliforta.github.io` by default.
+To override the site URL for the opening notice and all media links in a production build:
 
 ```sh
 PORTFOLIO_SITE_URL="https://example.com" python3 build.py
@@ -313,6 +354,10 @@ For CI, the check command validates TOML, required fields, referenced local imag
 ```sh
 python3 build.py --check
 ```
+
+Use `python3 build.py --check --compressed-pdf` to verify both PDF copies as well
+as the generated site. The compressed copy is only generated or checked when
+`--compressed-pdf` is supplied.
 
 To run the PDF regression checks (embedded fonts, selectable content, project links, alternate layouts, and reproducible output):
 

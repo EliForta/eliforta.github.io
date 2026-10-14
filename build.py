@@ -39,6 +39,7 @@ CSS_COLOR_RE = re.compile(r"^#[0-9a-fA-F]{3,8}$")
 CSS_POSITION_RE = re.compile(r"^[0-9.]+%(?:\s+[0-9.]+%){1,2}$|^(?:center|left|right|top|bottom)(?:\s+(?:center|left|right|top|bottom))?$")
 VIDEO_EXTENSIONS = {".mp4"}
 TRANSPARENT_VECTOR_EXTENSIONS = {".svg"}
+MEDIA_RATIOS = {"landscape": 3 / 2, "portrait": 4 / 5, "square": 1, "wide": 16 / 9}
 
 
 class BuildError(Exception):
@@ -275,6 +276,35 @@ def normalized_image_scale(item: dict) -> float:
     return scale if math.isfinite(scale) else 1
 
 
+def matching_frame(first: dict) -> dict:
+    """Resolve the first media item's frame without changing source dimensions."""
+    ratio = MEDIA_RATIOS.get(first.get("ratio"))
+    natural = ratio is None
+    if natural:
+        dimensions = image_dimensions(first)
+        if dimensions:
+            width, height = map(int, re.findall(r'="(\d+)"', dimensions))
+            ratio = width / height
+        else:
+            # PNG/GIF metadata is handled above; Pillow also covers JPEG/WebP.
+            from PIL import Image, ImageOps
+            source = str(first.get("src", ""))
+            if source and not source.startswith(("http:", "https:", "data:", "/")) and ".." not in Path(source).parts:
+                try:
+                    with Image.open(ROOT / asset_source(source)) as image:
+                        width, height = ImageOps.exif_transpose(image).size
+                    ratio = width / height
+                except (OSError, ValueError):
+                    pass
+    if ratio is None:
+        raise BuildError(
+            "match_first needs a known first-image ratio: set its ratio, or provide "
+            "width and height for an SVG, video, remote image, or placeholder"
+        )
+    return {"ratio": ratio, "scale": min(normalized_image_scale(first), 1) if natural else 1,
+            "natural": natural}
+
+
 def image_style(item: dict) -> str:
     fit = item.get("fit", "cover")
     if fit not in {"cover", "contain"}:
@@ -346,7 +376,7 @@ def normalize_section(section: dict) -> dict:
     return normalized
 
 
-def section_images(section: dict) -> list[dict]:
+def section_images(section: dict, *, resolve_matches: bool = True) -> list[dict]:
     images = section.get("images", [])
     if isinstance(images, dict):
         images = [images]
@@ -360,7 +390,15 @@ def section_images(section: dict) -> list[dict]:
             label = re.sub(r"[-_]+", " ", Path(item).stem).strip().capitalize()
             normalized.append({"src": item, "alt": label})
         elif isinstance(item, dict):
-            normalized.append(item)
+            normalized.append(dict(item))
+    if resolve_matches and any(item.get("match_first") is True for item in normalized[1:]):
+        frame = matching_frame(normalized[0])
+        # Resolve both the reference and its followers so print height limits
+        # cannot produce different frame sizes for different source images.
+        normalized[0]["_matching_frame"] = frame
+        for item in normalized[1:]:
+            if item.get("match_first") is True:
+                item["_matching_frame"] = frame
     return normalized
 
 
@@ -379,14 +417,21 @@ def render_media(item: dict, project_title: str, classes: str = "") -> str:
     ratio = item.get("ratio", "natural")
     if ratio not in {"natural", "landscape", "portrait", "square", "wide"}:
         ratio = "natural"
+    matching = item.get("_matching_frame")
+    if matching:
+        ratio = "matched"
     figure_classes = f"media-item ratio--{ratio} {classes}".strip()
     caption_html = f"<figcaption>{visible_text(caption)}</figcaption>" if caption else ""
+    frame_style = f"--image-layout-width:{min(normalized_image_scale(item), 1) * 100:g}%"
+    if matching:
+        frame_style = f"--image-layout-width:{matching['scale'] * 100:g}%;--image-frame-ratio:{matching['ratio']:g}"
+    frame_style = esc(frame_style)
 
     if item.get("placeholder"):
         label = visible_text(item["placeholder"])
         return (
             f'<figure class="{figure_classes} media-placeholder">'
-            f'<div class="media-frame"><span>{label}</span></div>{caption_html}</figure>'
+            f'<div class="media-frame" style="{frame_style}"><span>{label}</span></div>{caption_html}</figure>'
         )
 
     src = str(item.get("src", ""))
@@ -396,7 +441,6 @@ def render_media(item: dict, project_title: str, classes: str = "") -> str:
     visual = render_visual(item, url, alt, loading=loading)
     lightbox = item.get("lightbox", True)
     frame_class = "media-frame media-surface--elevated" if has_elevated_image_surface(item) else "media-frame"
-    frame_style = esc(f"--image-layout-width:{min(normalized_image_scale(item), 1) * 100:g}%")
     if lightbox:
         dialog_scale = item.get("dialog_scale", 1)
         frame = (
@@ -631,11 +675,20 @@ def validate_project(project: dict, source: Path) -> list[str]:
             errors.append(f"{context}: type must be one of {', '.join(sorted(ALLOWED_TYPES))}")
             continue
         if kind in {"split", "gallery"}:
-            images = section_images(section)
+            images = section_images(section, resolve_matches=False)
             if not images:
                 errors.append(f"{context}: add at least one [[sections.images]] block")
             for image_index, item in enumerate(images, 1):
                 validate_image(item, f"{context}, image {image_index}", errors)
+                if "match_first" in item:
+                    if type(item["match_first"]) is not bool:
+                        errors.append(f"{context}, image {image_index}: match_first must be true or false")
+                    elif image_index == 1 and item["match_first"]:
+                        errors.append(f"{context}, image 1: match_first is only available after the first image")
+            try:
+                section_images(section)
+            except BuildError as exc:
+                errors.append(f"{context}: {exc}")
         elif kind == "image":
             validate_image(section, context, errors)
         elif kind == "details":
@@ -828,20 +881,27 @@ def write_outputs(outputs: dict[Path, str]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true", help="validate content and verify generated pages are current")
+    parser.add_argument("--check", action="store_true", help="validate content and verify generated pages and PDFs are current")
+    parser.add_argument(
+        "--compressed-pdf", action="store_true",
+        help="also generate output/pdf/ef-portfolio-compressed.pdf with smaller images",
+    )
     args = parser.parse_args()
     try:
         projects = load_projects()
         outputs = build_outputs(projects)
         try:
             from build_pdf import OUTPUT_PATH as pdf_path
+            from build_pdf import COMPRESSED_OUTPUT_PATH as compressed_pdf_path
             from build_pdf import render_portfolio_pdf
         except ImportError as exc:
             raise BuildError(
                 "PDF dependencies are missing. Run: python3 -m pip install -r requirements.txt"
             ) from exc
         try:
-            pdf_bytes = render_portfolio_pdf(projects)
+            pdf_outputs = {pdf_path: render_portfolio_pdf(projects)}
+            if args.compressed_pdf:
+                pdf_outputs[compressed_pdf_path] = render_portfolio_pdf(projects, compress_images=True)
         except Exception as exc:
             raise BuildError(f"PDF build failed: {exc}") from exc
     except (BuildError, OSError) as exc:
@@ -850,21 +910,24 @@ def main() -> int:
 
     if args.check:
         stale = [path for path, expected in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != expected]
-        if not pdf_path.exists() or pdf_path.read_bytes() != pdf_bytes:
-            stale.append(pdf_path)
+        stale.extend(path for path, expected in pdf_outputs.items()
+                     if not path.exists() or path.read_bytes() != expected)
         if stale:
             print("Generated files are out of date:", file=sys.stderr)
             for path in stale:
                 print(f"- {path.relative_to(ROOT)}", file=sys.stderr)
-            print("Run: python3 build.py", file=sys.stderr)
+            print("Run: python3 build.py" + (" --compressed-pdf" if args.compressed_pdf else ""), file=sys.stderr)
             return 1
-        print(f"OK: {len(projects)} projects validated; generated pages and PDF are current.")
+        pdf_label = "PDFs" if args.compressed_pdf else "PDF"
+        print(f"OK: {len(projects)} projects validated; generated pages and {pdf_label} are current.")
         return 0
 
     write_outputs(outputs)
-    pdf_path.parent.mkdir(parents=True, exist_ok=True)
-    pdf_path.write_bytes(pdf_bytes)
-    print(f"Built {len(projects)} projects, the home page, and {pdf_path.relative_to(ROOT)}.")
+    for path, contents in pdf_outputs.items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(contents)
+    pdf_names = " and ".join(str(path.relative_to(ROOT)) for path in pdf_outputs)
+    print(f"Built {len(projects)} projects, the home page, and {pdf_names}.")
     return 0
 
 

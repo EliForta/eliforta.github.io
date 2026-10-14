@@ -15,11 +15,13 @@ role = "Undergraduate Research Assistant"
 type = "text"
 id = "overview"
 title = "Overview"
-width = "reading"
+width = "full"
 body = """
-For the Autonomous Disassembly and Sorting of Batteries research project, I am developing half-round fiber-reinforced silicone actuators for an end effector. My work spans fabrication, parametric mold design, modular mounting, and developing a Python controlled setup for pressure and gantry control.
+The Autonomous Disassembly and Sorting of Batteries project has two parts: a software and conveyor system, and a silicone end effector. I'm the only person working on the silicone end effector. I'm developing half-round fiber-reinforced silicone actuators for it. I set my own development priorities and report progress to the supervising professors.
 
-The challenge has been making the hardware consistent enough to compare designs. Each round of prototyping exposed the next problem: difficult molding, leakage under load, then delamination of the strain-limiting layer. The next step is controlled experiments across battery sizes, actuator designs, and strain-limiting materials.
+So far I've cast about 20 actuators across four mold versions, redesigned how the actuators mount and seal, and built a Python-controlled pressure and motion setup for testing.
+
+The main challenge has been making the hardware consistent enough to compare designs fairly. Each round of prototyping exposed the next problem: difficult molding, then leakage under load, then delamination of the strain-limiting layer.
 """
 
 [[sections]]
@@ -29,9 +31,9 @@ title = "Improving the molds"
 image_side = "right"
 media_layout = "grid"
 body = """
-The original molds depended on shared steel stock and external clamps, left both actuator ends open, and were prone to trapping bubbles. Limited hardware also restricted simultaneous casting.
+These actuators are cast with a two-stage molding process based on the half-round actuator design from the Soft Robotics Toolkit. The molds I inherited had several issues: they relied on a shared length of steel stock and external clamps, which limited how many could be cast at once. They also left both actuator ends open, often trapped bubbles, and weren't clearly labeled.
 
-I rebuilt the molds in parametric CAD so actuator length, fiber angle, and wall thickness could be changed directly. The model generates part numbers and calculates the silicone needed for pouring by weight, making each variant easier to identify and prepare.
+I redesigned the molds from scratch over four or more versions. The new molds hold together with built-in bolts instead of external clamps, close both actuator ends, trap fewer bubbles, and can be cast several at a time.
 """
 
   [[sections.images]]
@@ -44,6 +46,11 @@ I rebuilt the molds in parametric CAD so actuator length, fiber angle, and wall 
   src = "assets/images/actuator/actuatorMold1.png"
   alt = "Exploded CAD view of the actuator mold and its internal pieces"
   fit = "contain"
+[[sections]]
+type = "text"
+body = """
+The CAD is fully parametric, with actuator length, fiber angle, inner wall thickness, and other dimensions as variables. Each variant generates its own part number and calculates the silicone it needs, so I can mix and pour by weight.
+"""
 
 [[sections]]
 type = "gallery"
@@ -67,12 +74,10 @@ spacing = "compact"
 [[sections]]
 type = "split"
 id = "first-mount"
-title = "Version 1"
+title = "Mount v1 - barbed fittings"
 image_side = "right"
 media_layout = "stack"
-body = "My first mount used barbed fittings. When the pressurized actuator met resistance, its flat underside pulled away from the fitting and released air. The connection needed to hold the half-round profile closed under load. 
-
-Despite the leaking issue, the actuator showed promising performance in early testing, so I continued to work on the design by redesigning the actuator mounts."
+body = "My first mount used barbed fittings. When a pressurized actuator pressed against resistance, its flat underside pulled away from the fitting and leaked air. The connection needed to stay sealed under load. The actuators still performed well in early tests, so I kept the actuator design and redesigned the mount."
 
   [[sections.images]]
   src = "assets/images/actuator/actuator3.png"
@@ -83,14 +88,14 @@ Despite the leaking issue, the actuator showed promising performance in early te
   [[sections.images]]
   src = "assets/images/actuator/actuator.mp4"
   alt = "Video of testing with the first actuator mount"
-  caption = "Despite the leaking, early testing showed promising results."
+  caption = "Early test on the MTS test frame: two actuators gripping a battery."
 
 [[sections]]
 type = "split"
 id = "compression-seal"
-title = "Version 2"
+title = "Mount v2 - captured flange"
 width = "full"
-body = "I modified the molds to add a flange to the actuator end. Then I designed a new mount that clamps the flange between two parts. This creates a self-contained actuator module: the seal stays assembled when the module moves to a different fixture. The section view shows how the flange is held in place."
+body = "I changed the molds to add a flange to the end of each actuator. The new mount clamps that flange between a frame and a compression piece. The seal no longer depends on the actuator's flat underside staying attached to a fitting. The result is a self-contained module with a seal that stays assembled when it moves to a different fixture. The section view shows how the flange is captured."
 
   [[sections.images]]
   src = "assets/images/actuator/actuator2.jpg"
@@ -127,7 +132,7 @@ title = ""
 image_side = "right"
 media_layout = "grid"
 # 30 psi is the reported prototype observation, not a rated operating pressure.
-body = "After several iterations, the mount operated without observed leakage at 30 psi. That exposed a different failure: the strain-limiting layer began to separate, causing twisting and inconsistent bending across repeated runs. Fixing the seal made it possible to focus on the actuator material itself."
+body = "After several iterations, the mount held 30 psi with no leakage observed in bench testing. That solved the seal but exposed a new failure: the strain-limiting layer began to separate from the actuator, causing twisting and inconsistent bending across repeated runs. With the seal reliable, the remaining problem was the actuator itself."
 
   [[sections.images]]
   src = "assets/images/actuator/actuator7.jpg"
@@ -145,7 +150,7 @@ type = "text"
 id = "modular-fixture"
 title = "A modular system"
 width = "reading"
-body = "The sealed modules attach to a separate angled fixture. To compare mounting angles, I can change that fixture without rebuilding the actuator connection. The CAD assembly and physical setup show how the same module fits into the larger test system."
+body = "The sealed modules attach to a separate angled fixture. To test a different mounting angle, I only need a new fixture. The actuator connections stay as they are. The CAD assembly and the physical setup show how the same module fits into the larger test system."
 
 [[sections]]
 type = "gallery"
@@ -175,7 +180,7 @@ spacing = "compact"
 [[sections]]
 type = "gallery"
 id = "three-finger-concept"
-title = "A new fixture is all that's needed to test new setups"
+title = "New configurations only need a new fixture"
 layout = "grid"
 columns = 2
 spacing = "compact"
@@ -183,7 +188,7 @@ spacing = "compact"
   [[sections.images]]
   src = "assets/images/actuator/actuator8.png"
   alt = "Front CAD view of a three-actuator fixture concept"
-  caption = "Three-finger configuration: a design exploration."
+  caption = "Three-finger configuration assembly"
   fit = "contain"
 
   [[sections.images]]
@@ -192,14 +197,26 @@ spacing = "compact"
   fit = "contain"
 
 [[sections]]
-type = "text"
+type = "split"
 id = "next-tests"
-title = "Current work"
-width = "reading"
+title = "Automated test setup"
 body = """
-I finished a Python-controlled setup that replaces the manual filling and release valves and the gantry's up/down buttons. It controls pressure setpoints and programmable ramp profiles, pressure release and exhaust, gantry motion and position, and motion speed. Battery placement remains an operator task.
+The inherited setup used manual valves to fill and release pressure, and up/down buttons to move the gantry. I replaced both with Python control. Scripts set pressure setpoints and programmable pressure ramps, release and exhaust pressure, and control gantry position and speed. The hardware is a Parker P32P series electronic pressure regulator, two Chroma 62010L power supplies, and an MTS Criterion Model 41 controlled through MTS TestSuite.
 
-The purpose is to reduce operator-dependent variation when testing different battery sizes and comparing actuator designs and materials. Programmed pressure and motion settings provide a basis for controlled comparisons.
+This new setup makes it possible to fairly compare actuator designs, materials, and battery types.
+"""
 
-More soon...
+  [[sections.images]]
+  src = "assets/images/actuator/code.png"
+  alt = "Front CAD view of a three-actuator fixture concept"
+  caption = "Example script to control gantry motion and pressure."
+  fit = "contain"
+  surface = "elevated"
+
+[[sections]]
+type = "text"
+title = "Current Work"
+width = "full"
+body = """
+The first priority is solving the delamination. I’m about to test a different material that looks promising. Once the actuators bend consistently, I’ll move on to full testing. The goal is to see how the design performs across different battery sizes, numbers of fingers, actuator lengths, and other variables. The modular fixtures make it easy to change the number of fingers, and the automated setup means each configuration can be compared under the same conditions.
 """

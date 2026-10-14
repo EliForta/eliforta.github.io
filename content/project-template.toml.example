@@ -49,6 +49,7 @@ spacing = "generous"              # compact | normal | generous
   src = "assets/images/my-project/prototype.jpg"
   alt = "First physical prototype"
   caption = "Testing the proportions"
+  # match_first = true            # Use the first image's frame ratio and size.
 
   # Silent MP4s use the same presentation fields as images. They autoplay,
   # loop, stay muted and inline, and never show playback controls.

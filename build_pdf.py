@@ -12,10 +12,12 @@ import os
 import re
 import shutil
 import subprocess
+from datetime import date
 from itertools import product
 from functools import lru_cache
 from html import escape
 from pathlib import Path
+from urllib.parse import quote
 
 from PIL import Image as PILImage
 from PIL import ImageOps
@@ -49,6 +51,9 @@ from reportlab.platypus.flowables import _listWrapOn
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT_PATH = ROOT / "output" / "pdf" / "ef-portfolio.pdf"
+COMPRESSED_OUTPUT_PATH = OUTPUT_PATH.with_stem(f"{OUTPUT_PATH.stem}-compressed")
+COMPRESSED_IMAGE_MAX_SIZE = (900, 900)
+COMPRESSED_IMAGE_JPEG_QUALITY = 75
 
 PAGE_WIDTH, PAGE_HEIGHT = LETTER
 MARGIN_X = 0.67 * inch
@@ -135,7 +140,7 @@ STYLES = {
     "body": _style("Body", BODY_FONT, 10, 15.5, PRINT_MUTED, spaceAfter=8),
     "small": _style("Small", BODY_FONT, 8.2, 12, PRINT_MUTED),
     "small_bold": _style("SmallBold", FONT_BOLD, 16, 20, spaceAfter=3),
-    "caption": _style("Caption", FONT_REGULAR, 11.5, 15, PRINT_MUTED),
+    "caption": _style("Caption", BODY_FONT, 11.5, 15, PRINT_MUTED),
     "motion": _style("Motion", BODY_FONT, 7.4, 10.5, PRINT_MUTED),
     "note_title": _style("NoteTitle", FONT_REGULAR, 13, 16, spaceAfter=5),
     "quote": _style("Quote", FONT_REGULAR, 23, 30, alignment=TA_CENTER),
@@ -193,6 +198,16 @@ def _asset_path(value: object) -> Path | None:
     return shorthand if shorthand.is_file() else None
 
 
+def _site_url() -> str:
+    return os.environ.get("PORTFOLIO_SITE_URL", "").strip() or "https://eliforta.github.io"
+
+
+def _asset_url(path: Path) -> str:
+    """Link the displayed still to its original file on the live site."""
+    relative = path.relative_to(ROOT).as_posix()
+    return f"{_site_url().rstrip('/')}/{quote(relative, safe='/')}"
+
+
 @lru_cache(maxsize=128)
 def _prepared_image(path_string: str) -> tuple[bytes, int, int]:
     """Keep transparent CAD artwork on the paper and photos compact."""
@@ -219,6 +234,39 @@ def _prepared_image(path_string: str) -> tuple[bytes, int, int]:
         else:
             image.convert("RGB").save(output, format="JPEG", quality=90, optimize=True)
         return output.getvalue(), image.width, image.height
+
+
+class PortfolioImageReader(ImageReader):
+    """Keep encoded image data available for an optional smaller PDF copy."""
+
+    def __init__(self, data: bytes):
+        self.source_data = data
+        super().__init__(io.BytesIO(data))
+
+
+@lru_cache(maxsize=128)
+def _compressed_image(data: bytes) -> ImageReader:
+    with PILImage.open(io.BytesIO(data)) as source:
+        image = source.copy()
+    image.thumbnail(COMPRESSED_IMAGE_MAX_SIZE, PILImage.Resampling.LANCZOS)
+    output = io.BytesIO()
+    if "A" in image.getbands():
+        # Keep the alpha channel so artwork still works on every section theme.
+        image.save(output, format="PNG", optimize=True)
+    else:
+        image.convert("RGB").save(
+            output, format="JPEG", quality=COMPRESSED_IMAGE_JPEG_QUALITY, optimize=True,
+        )
+    return ImageReader(io.BytesIO(output.getvalue()))
+
+
+class CompressedImageCanvas(InvariantCanvas):
+    """Compress embedded images after layout has resolved their printed sizes."""
+
+    def drawImage(self, image, *args, **kwargs):
+        if isinstance(image, PortfolioImageReader):
+            image = _compressed_image(image.source_data)
+        return super().drawImage(image, *args, **kwargs)
 
 
 def _table(rows, widths, **kwargs):
@@ -249,12 +297,15 @@ def _position(value):
 
 
 class MediaFrame(Flowable):
-    def __init__(self, path, item, width, max_height):
+    def __init__(self, path, item, width, max_height, destination=None):
         super().__init__()
+        self.url = _asset_url(path)
+        self.destination = destination
         data, pw, ph = _prepared_image(str(path.resolve()))
-        self.image = ImageReader(io.BytesIO(data))
+        self.image = PortfolioImageReader(data)
         self.width = width
-        ratios = {"landscape": 3/2, "portrait": 4/5, "square": 1, "wide": 16/9}
+        from build import MEDIA_RATIOS
+        ratios = MEDIA_RATIOS
         ratio = ratios.get(item.get("ratio"), pw / ph)
         zoom = max(.01, float(item.get("scale", 1)))
         natural = item.get("ratio", "natural") == "natural"
@@ -274,6 +325,19 @@ class MediaFrame(Flowable):
         # than under empty space left by the print height limit.
         self.frame_width = min(width, self.render_width) if natural else width
         self.frame_x = (width-self.frame_width)*self.position[0]
+        matching = item.get("_matching_frame")
+        self.matching = bool(matching)
+        if matching:
+            ratio = matching["ratio"]
+            self.frame_width = width * matching["scale"]
+            if matching["natural"]:
+                self.frame_width = min(self.frame_width, max_height * ratio)
+            self.height = min(max_height, self.frame_width / ratio)
+            self.frame_x = (width - self.frame_width) * self.position[0]
+            fit = item.get("fit", "cover")
+            scale = (max if fit == "cover" else min)(self.frame_width / pw, self.height / ph)
+            zoom = max(1, zoom)
+            self.render_width, self.render_height = pw * scale * zoom, ph * scale * zoom
 
     def draw(self):
         c = self.canv
@@ -292,6 +356,8 @@ class MediaFrame(Flowable):
         clip = c.beginPath()
         if self.elevated:
             clip.roundRect(self.frame_x, 0, self.frame_width, self.height, 3.5)
+        elif self.matching:
+            clip.rect(self.frame_x, 0, self.frame_width, self.height)
         else:
             clip.rect(0, 0, self.width, self.height)
         c.clipPath(clip, stroke=0)
@@ -303,6 +369,11 @@ class MediaFrame(Flowable):
                     (self.height-self.render_height)*(1-py),
                     self.render_width, self.render_height, mask="auto")
         c.restoreState()
+        rect = (self.frame_x, 0, self.frame_x+self.frame_width, self.height)
+        if self.destination:
+            c.linkRect("", self.destination, Rect=rect, relative=1, thickness=0)
+        else:
+            c.linkURL(self.url, rect, relative=1, thickness=0)
 
 
 class Tilted(Flowable):
@@ -327,18 +398,25 @@ class Tilted(Flowable):
 def _motion_note(source):
     extension = Path(str(source or "")).suffix.lower()
     if extension == ".gif":
-        return "Animation - first frame shown."
+        return "Animation still - first frame shown; click to view."
     if extension in VIDEO_EXTENSIONS:
-        return "Video still - motion on the website."
+        return "Video still - click to view."
+    if extension in {".avif", ".webp", ".png", ".apng"}:
+        path = _asset_path(source)
+        if path is not None:
+            with PILImage.open(path) as image:
+                if getattr(image, "is_animated", False):
+                    return "Animation still - first frame shown; click to view."
     return ""
 
 
-def _media_item(item, width, max_height, styles=None, angle=0):
+def _media_item(item, width, max_height, styles=None, angle=0, destination=None):
     styles = styles or STYLES
     source = item.get("src", "")
     path = _asset_path(source)
+    motion_note = _motion_note(source)
     if item.get("placeholder") or path is None:
-        label = item.get("placeholder") or _motion_note(source) or "Media available on the website."
+        label = item.get("placeholder") or motion_note or "Media available on the website."
         visual = _table([[Paragraph(_text(label), styles["caption"])]], [width],
                         rowHeights=[min(max_height, 1.2*inch)])
         visual.setStyle(TableStyle([
@@ -348,13 +426,13 @@ def _media_item(item, width, max_height, styles=None, angle=0):
             ("RIGHTPADDING", (0, 0), (-1, -1), 12),
         ]))
     else:
-        visual = MediaFrame(path, item, width, max_height)
+        visual = MediaFrame(path, item, width, max_height, destination=destination)
     rows = [[visual]]
     caption_inset = visual.frame_x if isinstance(visual, MediaFrame) else 0
     if item.get("caption"):
         rows.extend([[Spacer(1, 5)], [Paragraph(_text(item["caption"]), styles["caption"])]])
-    if _motion_note(source) and path is not None:
-        rows.extend([[Spacer(1, 4)], [Paragraph(_text(_motion_note(source)), styles["motion"])]])
+    if motion_note and path is not None:
+        rows.extend([[Spacer(1, 4)], [Paragraph(_text(motion_note), styles["motion"])]])
     card = _table(rows, [width])
     if len(rows) > 1 and isinstance(visual, MediaFrame) and visual.frame_width < width:
         card.setStyle(TableStyle([
@@ -387,10 +465,8 @@ def _section_heading(section, styles=None):
 
 
 def _section_images(section):
-    images = section.get("images", [])
-    if isinstance(images, dict):
-        images = [images]
-    return [{"src": item} if isinstance(item, str) else dict(item) for item in images]
+    from build import section_images
+    return section_images(section)
 
 
 def _compact_gallery_columns(image_count, width=CONTENT_WIDTH, gap=16):
@@ -460,12 +536,13 @@ class AnnotatedImage(Flowable):
     """Uncropped drawing with handwritten side notes and native dashed leaders."""
     def __init__(self, path, notes, width, note_side, styles, background=PAPER):
         super().__init__()
+        self.url = _asset_url(path)
         self.width, self.notes, self.side = width, notes, note_side
         self.background = background
         self.note_width = width * .31
         self.image_width = width * .62 if notes else width
         data, pw, ph = _prepared_image(str(path.resolve()))
-        self.image = ImageReader(io.BytesIO(data))
+        self.image = PortfolioImageReader(data)
         self.image_height = min(240, self.image_width * ph/pw)
         self.image_width = self.image_height * pw/ph
         self.copy = []
@@ -485,6 +562,8 @@ class AnnotatedImage(Flowable):
         iy = (self.height-self.image_height)/2
         nx = 0 if left else self.width-self.note_width
         c.drawImage(self.image, ix, iy, self.image_width, self.image_height, mask="auto")
+        c.linkURL(self.url, (ix, iy, ix+self.image_width, iy+self.image_height),
+                  relative=1, thickness=0)
         notes_height = sum(height for _, height in self.copy)+18*max(0, len(self.copy)-1)
         top = (self.height+notes_height)/2
         for note, (parts, height) in zip(self.notes, self.copy):
@@ -520,9 +599,10 @@ class EdgeAnnotatedImage(Flowable):
     def __init__(self, path, notes, width, side, layout, columns, styles, background=PAPER):
         from build import detail_note_edge
         super().__init__()
+        self.url = _asset_url(path)
         self.width, self.background = width, background
         data, pw, ph = _prepared_image(str(path.resolve()))
-        self.image = ImageReader(io.BytesIO(data))
+        self.image = PortfolioImageReader(data)
         self.image_height = min(240, width * ph / pw)
         self.image_width = self.image_height * pw / ph
         self.groups = {}
@@ -569,6 +649,8 @@ class EdgeAnnotatedImage(Flowable):
         c = self.canv
         ix, iy = (self.width - self.image_width) / 2, self.image_y
         c.drawImage(self.image, ix, iy, self.image_width, self.image_height, mask="auto")
+        c.linkURL(self.url, (ix, iy, ix+self.image_width, iy+self.image_height),
+                  relative=1, thickness=0)
         for item in self.placements:
             point = item["note"].get("point", [.5, .5])
             x, y = ix + float(point[0]) * self.image_width, iy + (1 - float(point[1])) * self.image_height
@@ -737,10 +819,11 @@ def _render_section(section, *, gallery_columns=None, gallery_max_height=2.5 * i
 
 
 def _cover(projects):
+    today = date.today()
     intro = [Paragraph('Hi, I\'m Eli<font color="#64754e">.</font>', STYLES["cover_title"]),
              Paragraph(
-                 "I am a mechanical engineering student at Lawrence Technological University.<br/>"
-                 "This is a small collection of projects I have designed and built.",
+                 "I’m a mechanical engineering student at Lawrence Technological University.<br/>"
+                 "Here are some projects I’ve designed, built, and tested, from research hardware to a product I sold.",
                  STYLES["cover_deck"],
              )]
     story = [ProjectAnchor("home", "Selected work"),
@@ -762,7 +845,8 @@ def _cover(projects):
             label = _plain(project.get("card_label") or project.get("subtitle"))
             year = _plain(project.get("year"))
             card = [Spacer(1, 10 if column else 0),
-                    _media_item(thumb, cell_width, 132, angle=.8 if column else -.7),
+                    _media_item(thumb, cell_width, 132, angle=.8 if column else -.7,
+                                destination=f'project-{project["slug"]}'),
                     Spacer(1, 7), Paragraph(title, STYLES["small_bold"]),
                     Paragraph(" &nbsp;&nbsp; ".join(_text(v) for v in (label, year) if v), STYLES["small"]),
                     Spacer(1, 16)]
@@ -775,16 +859,18 @@ def _cover(projects):
     if rows:
         story.append(_table(rows, [cell_width, gap, cell_width]))
     note_text = (
-        "This is a PDF copy of my portfolio website. For the best experience, I recommend viewing "
-        "the live site, as animations and videos cannot be displayed in this version."
+        "This is a PDF copy of my portfolio website. Within each project, click any image to open the original file, "
+        "including animations and videos, or view them on the live site for the best experience. "
+        "The web version is likely more up to date than this PDF."
     )
-    site_url = os.environ.get("PORTFOLIO_SITE_URL", "").strip() or "https://eliforta.github.io"
+    site_url = _site_url()
     display_url = re.sub(r"^https?://", "", site_url).rstrip("/")
     note = [Paragraph("A note about this PDF", STYLES["small_bold"]),
             Paragraph(_text(note_text), STYLES["body"]),
             Paragraph(
                 f'<link href="{escape(site_url, quote=True)}" color="#4d633b">'
-                f'<b>{_text(display_url)}</b></link>',
+                f'<b>{_text(display_url)}</b></link>'
+                f' &nbsp;&nbsp; <font size="9">Last updated {today:%B} {today.day}, {today.year}</font>',
                 STYLES["body"],
             )]
     panel = _table([[note]], [CONTENT_WIDTH])
@@ -973,8 +1059,8 @@ def _draw_page(canvas_object, document):
     c.restoreState()
 
 
-def render_portfolio_pdf(projects: list[dict]) -> bytes:
-    """Render featured TOML projects into deterministic PDF bytes."""
+def render_portfolio_pdf(projects: list[dict], *, compress_images: bool = False) -> bytes:
+    """Render reproducible PDF bytes for today's date, optionally compressing images."""
     featured = [project for project in projects if project.get("featured", True)]
     if not featured:
         featured = projects
@@ -1003,5 +1089,5 @@ def render_portfolio_pdf(projects: list[dict]) -> bytes:
         story.extend(_project(project, index, len(featured)))
     if story and isinstance(story[-1], PageBreak):
         story.pop()
-    document.build(story, canvasmaker=InvariantCanvas)
+    document.build(story, canvasmaker=CompressedImageCanvas if compress_images else InvariantCanvas)
     return buffer.getvalue()

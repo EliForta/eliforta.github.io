@@ -18,22 +18,31 @@ image_alt = "Finished Dynamo cosplay prop with blue housing, a brown grip, and e
 body = """
 A friend asked me for help with their cosplay of Dynamo from the game Deadlock. A common way to turn an in-game model into a prop is to print it as one piece or glue together smaller sections, then sand, prime, and paint it.
 
-For this project, though, I saw an opportunity for an interesting challenge.
-
-
+I took a different approach for two reasons. The prop's barrel is supposed to look like glass with parts visible inside, which a painted solid print can't reproduce. And painting isn't my strength, so I wanted every part printed in its final color and assembled mechanically.
 """
-
 [[sections]]
 type = "text"
 width = "full"
 body = """
-I wanted to recreate the model from scratch in CAD and determine how it could be broken down into individual parts and assembled as a real object. Every part was separated by color, and then I figured out how each piece would connect using only bolts and printed connectors, while planning the internal assembly around the electronics and wiring. The end result far exceeded my goals while keeping the exterior design, scale, and proportions identical to the original model.
+I rebuilt the model from scratch in Onshape and worked out how to split it into parts that could be assembled as a real object. I used hidden fasteners, printed threads, and metal hardware, and planned the interior around the electronics and wiring. The finished prop is practically identical to the in-game model. Design took a few months of on-and-off work, and fabrication and assembly took about two more weeks.
 """
+
+[[sections]]
+type = "split"
+title = "Recreating the model"
+width = "full"
+body = """
+I extracted the model from the game, imported the mesh into Onshape, and scaled it. The mesh had clean geometry, and many parts were aligned with their own axes, so I could trace them. I created a sketch plane through reference vertices, projected those points into the sketch, drew profiles between them, and then extruded or revolved each profile. Parts that weren't aligned with an axis took more work.
+"""
+[[sections.images]]
+  src = "assets/images/dynamo/trace.png"
+  caption = "Tracing a part of the frame from the reference mesh."
+  surface = "elevated"
+
 
 [[sections]]
 type = "gallery"
 id = "model-comparison"
-title = "Recreating the model"
 layout = "grid"
 columns = 2
 spacing = "compact"
@@ -52,25 +61,56 @@ spacing = "compact"
   fit = "contain"
 
 [[sections]]
+type = "text"
+id = "challenges"
+title = "Challenges"
+width = "full"
+body = """
+The hardest part was figuring out how the parts would connect and be assembled. An in-game model only needs to look convincing; that factor is rarely considered in the design. A physical prop needs connections that can be assembled and hold everything in place. Working out those details while keeping the original appearance was one of the parts I enjoyed most.
+
+The barrel is a good example of this. In the in-game model, it appears to be held in place by the blue retaining ring. That connection alone wouldn't be enough for the physical prop, so I needed a way to secure the barrel without changing its appearance.
+
+The internal parts are too large to pass through either end of the barrel, so I split it into two sections with a hidden seam. The images below show the assembly sequence. Click any image for a closer look!
+"""
+
+[[sections]]
 type = "gallery"
+id = "model-comparison"
 layout = "grid"
-columns = 3
-spacing = "compact"
+columns = 4
 
   [[sections.images]]
-  src = "assets/images/dynamo/dynamo12.jpg"
-  caption = "Testing the diffuser"
-  fit = "contain"
+  src = "assets/images/dynamo/step1.png"
+  caption = "The assembled body and frame are ready for the barrel."
 
   [[sections.images]]
-  src = "assets/images/dynamo/dynamo13.jpg"
-  caption = "Internal wiring"
-  fit = "contain"
+  src = "assets/images/dynamo/step2.png"
+  caption = "The rear half of the clear barrel fits against the body."
 
   [[sections.images]]
-  src = "assets/images/dynamo/dynamo11.jpg"
-  caption = "The wooden grip is actually stained wood PLA"
-  fit = "contain"
+  src = "assets/images/dynamo/step3.png"
+  caption = "The rear section of the internal assembly fits inside the barrel."
+
+  [[sections.images]]
+  src = "assets/images/dynamo/step4.png"
+  caption = "Four bolts clamp the internal assembly to the body."
+
+  [[sections.images]]
+  src = "assets/images/dynamo/step5.png"
+  caption = "The diffuser assembly covers the four mounting bolts."
+
+  [[sections.images]]
+  src = "assets/images/dynamo/step6.png"
+  caption = "The front half of the barrel slides over the diffuser."
+
+  [[sections.images]]
+  src = "assets/images/dynamo/step7.png"
+  caption = "Bolts join the barrel halves and secure the diffuser assembly."
+
+  [[sections.images]]
+  src = "assets/images/dynamo/step8.png"
+  caption = "The blue retaining ring hides the seam and exterior bolts."
+
 
 # [[sections]]
 # type = "text"
@@ -97,7 +137,7 @@ note_side = "both"
 
   [[sections.notes]]
   title = "Brightness control"
-  text = "A potentiometer for brightness control is hidden in pre-existing detail in the design."
+  text = "A potentiometer for brightness control is hidden in a pre-existing detail in the design."
   point = [0.73, 0.27]
   side = "top"
 
@@ -125,8 +165,8 @@ note_side = "both"
 type = "text"
 id = "assembly"
 title = "Putting it together"
-width = "reading"
-body = "The final design was made up of over 100 printed parts."
+width = "full"
+body = "The final design has over 100 printed parts, grouped into subassemblies. I planned the assembly order and made sure every fastener could be reached. I designed almost every part to print without supports, splitting complex parts into smaller ones when needed."
 
 [[sections]]
 type = "image"

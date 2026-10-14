@@ -19,20 +19,31 @@ title = "Overview"
 image_side = "right"
 media_layout = "single"
 body = """
-Connect Us operates The Line, a 12-station activity where participants help assemble items for other charities. At Station 1, users originally retrieved a clipboard using a pole and magnet. The task required significant reach and strength, and many participants needed assistance to complete it.
-
-Our team redesigned the station around an automatic clipboard dispenser. A single button press activates an Arduino-controlled servo mechanism that dispenses one clipboard at a time, reducing the physical demands of the original task.
-
-As team lead, I helped guide the design through multiple prototype iterations, incorporated stakeholder feedback, and coordinated compatibility with another team's clipboard design. The final prototype combined automatic dispensing, a movable activation button, sensory feedback, and adaptable printed components to support a wider range of users.
+Connect Us runs The Line, a 12-station activity where individuals with severe disabilities help make items for other charities. At Station 1, participants pick up the clipboard they use for the rest of The Line. The original station had them lift the clipboard with a pole and magnet, which took reach and strength. Many participants needed significant help from an assistant, and Connect Us felt the station made for an underwhelming start.
 """
 
   [[sections.images]]
-  src = "assets/images/clipboard/clipboard2.jpg"
+  src = "assets/images/clipboard/station1.png"
   alt = "Completed clipboard dispenser with a large external push button"
-  caption = "The final dispenser and movable activation button."
+  caption = "The original Station 1: a magnet on a pole."
   fit = "contain"
   surface = "elevated"
+  scale="0.7"
 
+[[sections]]
+type = "split"
+image_side = "left"
+body = """
+Our team replaced the pole with an automatic clipboard dispenser. One press of a large button runs an Arduino-controlled servo that dispenses a single clipboard down a ramp, with lights and sound along the way.
+
+I led the team, and we coordinated with a parallel team designing a custom clipboard-grabbing system so the two designs would work together. I did the CAD and mechanical design, cut the enclosure on my CNC router, 3D printed the components, programmed the Arduino, wired the electronics, and ran testing.
+"""
+[[sections.images]]
+src = "assets/images/clipboard/clipboard2.jpg"
+alt = "Completed clipboard dispenser with a large external push button"
+caption = "The final dispenser and movable activation button."
+fit = "contain"
+surface = "elevated"
 
 [[sections]]
 type = "columns"
@@ -43,7 +54,7 @@ spacing = "compact"
 
   [[sections.items]]
   title = "4.3 seconds"
-  text = "Average customer operation time during validation testing."
+  text = "Average participant operation time during validation testing."
 
   [[sections.items]]
   title = "≥50% independent"
@@ -63,15 +74,15 @@ spacing = "compact"
 
   [[sections.items]]
   title = "Single-button operation"
-  text = "A single press starts the dispensing cycle, eliminating the need to reach for, lift, or manipulate the original magnetic pole."
+  text = "One press dispenses one clipboard. Users no longer have to reach, lift, or steer the magnetic pole, which is where seated users needed the most help."
 
   [[sections.items]]
   title = "Flexible input placement"
-  text = "The activation button connects through a long cable so it can be positioned where it is easiest for an individual user to reach."
+  text = "The button sits on a long cable instead of the box, so assistants can put it wherever each participant can reach it."
 
   [[sections.items]]
   title = "Sensory feedback"
-  text = "Lighting, movement, sound, and other feedback make the station more interactive without relying on flashing lights or high-pitched audio."
+  text = "Connect Us wanted Station 1 to be a more exciting start to The Line, so the dispenser lights up and beads in the ramp wheels rattle as the clipboard rolls down. The lights stay steady and the sound stays soft, because flashing lights and loud noise were ruled out."
 
 
 [[sections]]
@@ -112,12 +123,12 @@ image_alt = "Annotated CAD view of the dispenser showing spacers, cable routing,
 
   [[sections.notes]]
   title = "Replaceable printed spacers"
-  text = "Replaceable spacer components allow the dispenser to accommodate different clipboard designs without rebuilding the enclosure."
+  text = "The spacers are printed parts that can be swapped, so the dispenser can take a different clipboard design without rebuilding the enclosure."
   point = [0.6, 0.2]
 
   [[sections.notes]]
   title = "Internal wiring channels"
-  text = "Channels built into the printed spacers route and conceal wiring while helping protect the recessed LED connections."
+  text = "I routed the wiring through channels in the spacers, so the wires stay hidden and the recessed LEDs are protected."
   point = [0.6, 0.605]
 
   [[sections.notes]]
@@ -138,7 +149,7 @@ image_alt = "Rear CAD detail of the dispenser's labeled electrical connections"
 
   [[sections.notes]]
   title = "Error-resistant connections"
-  text = "Clearly marked connectors and distinct plug arrangements help prevent the battery and activation-button connections from being mixed up during setup."
+  text = "Incorrect setup was one of the failure modes we planned for, so I labeled each connector and gave the battery and the button different plugs to make them hard to mix up."
   point = [0.52, 0.56]
 
 
@@ -166,20 +177,16 @@ spacing = "compact"
 type = "columns"
 id = "final-features"
 title = "Final prototype"
-columns = 3
+columns = 2
 spacing = "compact"
 
   [[sections.items]]
   title = "Rechargeable power"
-  text = "A rechargeable USB-C battery allows the station to operate without depending on access to a nearby electrical outlet."
-
-  [[sections.items]]
-  title = "Visible and audible feedback"
-  text = "Recessed lighting and bead-equipped ramp wheels provide sensory feedback as a clipboard moves through the dispenser."
+  text = "We first assumed the station would be near an outlet. That turned out not to be true, so the final version runs on a rechargeable USB-C battery, which lasted at least three hours in testing."
 
   [[sections.items]]
   title = "Designed for setup"
-  text = "A removable ramp, concealed wiring, labeled electrical connections, and silicone feet make the device easier to transport, assemble, and operate."
+  text = "The ramp comes off, the wiring is hidden, and silicone feet keep the station from sliding on the table."
 
 
 [[sections]]
